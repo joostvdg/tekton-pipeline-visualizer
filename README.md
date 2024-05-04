@@ -14,6 +14,9 @@ Project for visualizing Tekton Pipelines
 * Scrapes Kubernetes for data
 * Caches data in Redis
 * Sends data via RabbitMQ to Backend 2
+* stream logs into something
+ * ElasticSearch, or alternative?
+ * Write access
 
 ## Backend 2
 
@@ -24,6 +27,15 @@ Project for visualizing Tekton Pipelines
   * Flyway
 * Receive data via RabbitMQ
 * Expose data via GraphQL and OAuth
+* Read access to log storage
+
+## Backend 3
+
+* Notification configuration
+* SQLlite?
+* Export via GraphQL
+* Can receive notification information via RabbitMQ
+ * propogates it based on account settings
 
 ## Frontend
 
