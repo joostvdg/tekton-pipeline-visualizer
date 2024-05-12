@@ -1,0 +1,369 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    chains.tekton.dev/cert-pipelinerun-afc3c9a3-74ee-4d6b-9817-b21828f37240: ""
+    chains.tekton.dev/chain-pipelinerun-afc3c9a3-74ee-4d6b-9817-b21828f37240: ""
+    chains.tekton.dev/payload-pipelinerun-afc3c9a3-74ee-4d6b-9817-b21828f37240: eyJfdHlwZSI6Imh0dHBzOi8vaW4tdG90by5pby9TdGF0ZW1lbnQvdjAuMSIsInByZWRpY2F0ZVR5cGUiOiJodHRwczovL3Nsc2EuZGV2L3Byb3ZlbmFuY2UvdjEiLCJzdWJqZWN0IjpudWxsLCJwcmVkaWNhdGUiOnsiYnVpbGREZWZpbml0aW9uIjp7ImJ1aWxkVHlwZSI6Imh0dHBzOi8vdGVrdG9uLmRldi9jaGFpbnMvdjIvc2xzYSIsImV4dGVybmFsUGFyYW1ldGVycyI6eyJydW5TcGVjIjp7InBpcGVsaW5lUmVmIjp7Im5hbWUiOiJpZGVjLWltYWdlLWJ1aWxkcyJ9LCJwYXJhbXMiOlt7Im5hbWUiOiJnaXRyZXZpc2lvbiIsInZhbHVlIjoiZGZiZWJmNGRjMTYxNjBjOWE5YWI4MWE3N2ZiOWQ3NjQ0NTMwOTM5YSJ9LHsibmFtZSI6InJlcG8tdXJsIiwidmFsdWUiOiJodHRwczovL2dpdGh1Yi5jb20vam9vc3R2ZGcvaW5ncmVzcy1kbnMtZXhwb3J0LWNvbnRyb2xsZXIifSx7Im5hbWUiOiJiYXNlIiwidmFsdWUiOiIwLjIifSx7Im5hbWUiOiJyZWdpc3RyeSIsInZhbHVlIjoiaGFyYm9yLmhvbWUubGFiIn0seyJuYW1lIjoicmVwbyIsInZhbHVlIjoiaG9tZWxhYi9pZGVjIn1dLCJzZXJ2aWNlQWNjb3VudE5hbWUiOiJkZWZhdWx0IiwidGltZW91dHMiOnsicGlwZWxpbmUiOiIxaDBtMHMifSwid29ya3NwYWNlcyI6W3sibmFtZSI6ImNoZWNrb3V0Iiwidm9sdW1lQ2xhaW1UZW1wbGF0ZSI6eyJtZXRhZGF0YSI6eyJjcmVhdGlvblRpbWVzdGFtcCI6bnVsbH0sInNwZWMiOnsiYWNjZXNzTW9kZXMiOlsiUmVhZFdyaXRlT25jZSJdLCJyZXNvdXJjZXMiOnsicmVxdWVzdHMiOnsic3RvcmFnZSI6IjFHaSJ9fX0sInN0YXR1cyI6e319fSx7Im5hbWUiOiJyZWdpc3RyeS1jcmVkZW50aWFscyIsInNlY3JldCI6eyJzZWNyZXROYW1lIjoia2FuaWtvLWhhcmJvciJ9fSx7Im5hbWUiOiJtYXZlbi1zZXR0aW5ncyIsImVtcHR5RGlyIjp7fX0seyJuYW1lIjoiaGVsbS1jb25maWciLCJlbXB0eURpciI6e319XX19LCJpbnRlcm5hbFBhcmFtZXRlcnMiOnsidGVrdG9uLXBpcGVsaW5lcy1mZWF0dXJlLWZsYWdzIjp7IkRpc2FibGVBZmZpbml0eUFzc2lzdGFudCI6ZmFsc2UsIkRpc2FibGVDcmVkc0luaXQiOmZhbHNlLCJSdW5uaW5nSW5FbnZXaXRoSW5qZWN0ZWRTaWRlY2FycyI6dHJ1ZSwiUmVxdWlyZUdpdFNTSFNlY3JldEtub3duSG9zdHMiOmZhbHNlLCJFbmFibGVUZWt0b25PQ0lCdW5kbGVzIjpmYWxzZSwiU2NvcGVXaGVuRXhwcmVzc2lvbnNUb1Rhc2siOmZhbHNlLCJFbmFibGVBUElGaWVsZHMiOiJiZXRhIiwiU2VuZENsb3VkRXZlbnRzRm9yUnVucyI6ZmFsc2UsIkF3YWl0U2lkZWNhclJlYWRpbmVzcyI6dHJ1ZSwiRW5mb3JjZU5vbmZhbHNpZmlhYmlsaXR5Ijoibm9uZSIsIlZlcmlmaWNhdGlvbk5vTWF0Y2hQb2xpY3kiOiJpZ25vcmUiLCJFbmFibGVQcm92ZW5hbmNlSW5TdGF0dXMiOnRydWUsIlJlc3VsdEV4dHJhY3Rpb25NZXRob2QiOiJ0ZXJtaW5hdGlvbi1tZXNzYWdlIiwiTWF4UmVzdWx0U2l6ZSI6NDA5NiwiU2V0U2VjdXJpdHlDb250ZXh0IjpmYWxzZSwiQ29zY2hlZHVsZSI6IndvcmtzcGFjZXMifX0sInJlc29sdmVkRGVwZW5kZW5jaWVzIjpbeyJ1cmkiOiJvY2k6Ly9nY3IuaW8vdGVrdG9uLXJlbGVhc2VzL2dpdGh1Yi5jb20vdGVrdG9uY2QvcGlwZWxpbmUvY21kL2dpdC1pbml0IiwiZGlnZXN0Ijp7InNoYTI1NiI6IjU3OWM1NjQ3MzJjOTZlMmJiMzM3YWVmMjIzYzVkNTJlNWNlYzI3N2YxZjQ2YmUwZWFhMGRmMGYyNzk3ZTBjYjQifX0seyJ1cmkiOiJvY2k6Ly9naGNyLmlvL2pvb3N0dmRnL2dpdC1uZXh0LXRhZyIsImRpZ2VzdCI6eyJzaGEyNTYiOiI2YzE5MGNiMzBiODIyMzUzYmIzMWZmOTRiOTlmMGZiOWJiYzZjMGU1NjlmYjdmMTg1MjhhNTBlOThmMTk0YTI0In19LHsidXJpIjoib2NpOi8vcmVnaXN0cnkuYWNjZXNzLnJlZGhhdC5jb20vdWJpOC91YmktbWluaW1hbCIsImRpZ2VzdCI6eyJzaGEyNTYiOiI1Y2ZiYWY0NWNhOTY4MDY5MTc4MzBjMTgzZTlmMzdkZjJlOTEzYjE4N2FhZGIzMmU4OWZkODNmYTQ1NWViYWE2In19LHsidXJpIjoib2NpOi8vZG9ja2VyLmlvL2xpYnJhcnkvbWF2ZW4iLCJkaWdlc3QiOnsic2hhMjU2IjoiZWY2Yzg1MTI1NDQ5MDgyNzc1ZTAxMmI3MmI3NGM2MWFhZGUwODhkYzI3ZGZiMGJlOGNjMTJiODU0MzhiOGI5MCJ9fSx7InVyaSI6Im9jaTovL2djci5pby9rYW5pa28tcHJvamVjdC9leGVjdXRvciIsImRpZ2VzdCI6eyJzaGEyNTYiOiJjNjE2NjcxN2Y3ZmUwYjdkYTQ0OTA4Yzk4NjEzN2VjZmVhYjIxZjMxZWMzOTkyZjZlMTI4ZmZmOGE5NGJlOGE1In19LHsidXJpIjoib2NpOi8vZG9ja2VyLmlvL2xpYnJhcnkvYmFzaCIsImRpZ2VzdCI6eyJzaGEyNTYiOiJjNTIzYzYzNmI3MjIzMzlmNDFiNmE0MzFiNDQ1ODhhYjJmNzYyYzVkZTVlYzNiZDc5NjQ0MjBmZjk4MmZiMWQ5In19LHsidXJpIjoib2NpOi8vZ2hjci5pby9qb29zdHZkZy9hbHBpbmUtaGVsbSIsImRpZ2VzdCI6eyJzaGEyNTYiOiIxNjdlNWU4YzllNWM4YWU3YzIxMjcyMjgyODAzY2RhZmRkNmUzZGU0MjRjMGM3MjQ4ZDcxOTk2OTU5ZDg1MWM0In19LHsidXJpIjoib2NpOi8vY3VybGltYWdlcy9jdXJsIiwiZGlnZXN0Ijp7InNoYTI1NiI6IjAzMWRmNzdhMTFlNWVkZGVkODQwYmM3NjFhODQ1ZWFiNmUzYzJlZGVlMjI2NjlmYjhhZDZkNTk0ODRiNmExYzQifX1dfSwicnVuRGV0YWlscyI6eyJidWlsZGVyIjp7ImlkIjoiaHR0cHM6Ly90ZWt0b24uZGV2L2NoYWlucy92MiJ9LCJtZXRhZGF0YSI6eyJpbnZvY2F0aW9uSUQiOiJhZmMzYzlhMy03NGVlLTRkNmItOTgxNy1iMjE4MjhmMzcyNDAiLCJzdGFydGVkT24iOiIyMDI0LTAzLTAyVDAwOjUwOjE0WiIsImZpbmlzaGVkT24iOiIyMDI0LTAzLTAyVDAwOjUzOjMzWiJ9fX19
+    chains.tekton.dev/signature-pipelinerun-afc3c9a3-74ee-4d6b-9817-b21828f37240: eyJwYXlsb2FkVHlwZSI6ImFwcGxpY2F0aW9uL3ZuZC5pbi10b3RvK2pzb24iLCJwYXlsb2FkIjoiZXlKZmRIbHdaU0k2SW1oMGRIQnpPaTh2YVc0dGRHOTBieTVwYnk5VGRHRjBaVzFsYm5RdmRqQXVNU0lzSW5CeVpXUnBZMkYwWlZSNWNHVWlPaUpvZEhSd2N6b3ZMM05zYzJFdVpHVjJMM0J5YjNabGJtRnVZMlV2ZGpFaUxDSnpkV0pxWldOMElqcHVkV3hzTENKd2NtVmthV05oZEdVaU9uc2lZblZwYkdSRVpXWnBibWwwYVc5dUlqcDdJbUoxYVd4a1ZIbHdaU0k2SW1oMGRIQnpPaTh2ZEdWcmRHOXVMbVJsZGk5amFHRnBibk12ZGpJdmMyeHpZU0lzSW1WNGRHVnlibUZzVUdGeVlXMWxkR1Z5Y3lJNmV5SnlkVzVUY0dWaklqcDdJbkJwY0dWc2FXNWxVbVZtSWpwN0ltNWhiV1VpT2lKcFpHVmpMV2x0WVdkbExXSjFhV3hrY3lKOUxDSndZWEpoYlhNaU9sdDdJbTVoYldVaU9pSm5hWFJ5WlhacGMybHZiaUlzSW5aaGJIVmxJam9pWkdaaVpXSm1OR1JqTVRZeE5qQmpPV0U1WVdJNE1XRTNOMlppT1dRM05qUTBOVE13T1RNNVlTSjlMSHNpYm1GdFpTSTZJbkpsY0c4dGRYSnNJaXdpZG1Gc2RXVWlPaUpvZEhSd2N6b3ZMMmRwZEdoMVlpNWpiMjB2YW05dmMzUjJaR2N2YVc1bmNtVnpjeTFrYm5NdFpYaHdiM0owTFdOdmJuUnliMnhzWlhJaWZTeDdJbTVoYldVaU9pSmlZWE5sSWl3aWRtRnNkV1VpT2lJd0xqSWlmU3g3SW01aGJXVWlPaUp5WldkcGMzUnllU0lzSW5aaGJIVmxJam9pYUdGeVltOXlMbWh2YldVdWJHRmlJbjBzZXlKdVlXMWxJam9pY21Wd2J5SXNJblpoYkhWbElqb2lhRzl0Wld4aFlpOXBaR1ZqSW4xZExDSnpaWEoyYVdObFFXTmpiM1Z1ZEU1aGJXVWlPaUprWldaaGRXeDBJaXdpZEdsdFpXOTFkSE1pT25zaWNHbHdaV3hwYm1VaU9pSXhhREJ0TUhNaWZTd2lkMjl5YTNOd1lXTmxjeUk2VzNzaWJtRnRaU0k2SW1Ob1pXTnJiM1YwSWl3aWRtOXNkVzFsUTJ4aGFXMVVaVzF3YkdGMFpTSTZleUp0WlhSaFpHRjBZU0k2ZXlKamNtVmhkR2x2YmxScGJXVnpkR0Z0Y0NJNmJuVnNiSDBzSW5Od1pXTWlPbnNpWVdOalpYTnpUVzlrWlhNaU9sc2lVbVZoWkZkeWFYUmxUMjVqWlNKZExDSnlaWE52ZFhKalpYTWlPbnNpY21WeGRXVnpkSE1pT25zaWMzUnZjbUZuWlNJNklqRkhhU0o5Zlgwc0luTjBZWFIxY3lJNmUzMTlmU3g3SW01aGJXVWlPaUp5WldkcGMzUnllUzFqY21Wa1pXNTBhV0ZzY3lJc0luTmxZM0psZENJNmV5SnpaV055WlhST1lXMWxJam9pYTJGdWFXdHZMV2hoY21KdmNpSjlmU3g3SW01aGJXVWlPaUp0WVhabGJpMXpaWFIwYVc1bmN5SXNJbVZ0Y0hSNVJHbHlJanA3Zlgwc2V5SnVZVzFsSWpvaWFHVnNiUzFqYjI1bWFXY2lMQ0psYlhCMGVVUnBjaUk2ZTMxOVhYMTlMQ0pwYm5SbGNtNWhiRkJoY21GdFpYUmxjbk1pT25zaWRHVnJkRzl1TFhCcGNHVnNhVzVsY3kxbVpXRjBkWEpsTFdac1lXZHpJanA3SWtScGMyRmliR1ZCWm1acGJtbDBlVUZ6YzJsemRHRnVkQ0k2Wm1Gc2MyVXNJa1JwYzJGaWJHVkRjbVZrYzBsdWFYUWlPbVpoYkhObExDSlNkVzV1YVc1blNXNUZiblpYYVhSb1NXNXFaV04wWldSVGFXUmxZMkZ5Y3lJNmRISjFaU3dpVW1WeGRXbHlaVWRwZEZOVFNGTmxZM0psZEV0dWIzZHVTRzl6ZEhNaU9tWmhiSE5sTENKRmJtRmliR1ZVWld0MGIyNVBRMGxDZFc1a2JHVnpJanBtWVd4elpTd2lVMk52Y0dWWGFHVnVSWGh3Y21WemMybHZibk5VYjFSaGMyc2lPbVpoYkhObExDSkZibUZpYkdWQlVFbEdhV1ZzWkhNaU9pSmlaWFJoSWl3aVUyVnVaRU5zYjNWa1JYWmxiblJ6Um05eVVuVnVjeUk2Wm1Gc2MyVXNJa0YzWVdsMFUybGtaV05oY2xKbFlXUnBibVZ6Y3lJNmRISjFaU3dpUlc1bWIzSmpaVTV2Ym1aaGJITnBabWxoWW1sc2FYUjVJam9pYm05dVpTSXNJbFpsY21sbWFXTmhkR2x2Yms1dlRXRjBZMmhRYjJ4cFkza2lPaUpwWjI1dmNtVWlMQ0pGYm1GaWJHVlFjbTkyWlc1aGJtTmxTVzVUZEdGMGRYTWlPblJ5ZFdVc0lsSmxjM1ZzZEVWNGRISmhZM1JwYjI1TlpYUm9iMlFpT2lKMFpYSnRhVzVoZEdsdmJpMXRaWE56WVdkbElpd2lUV0Y0VW1WemRXeDBVMmw2WlNJNk5EQTVOaXdpVTJWMFUyVmpkWEpwZEhsRGIyNTBaWGgwSWpwbVlXeHpaU3dpUTI5elkyaGxaSFZzWlNJNkluZHZjbXR6Y0dGalpYTWlmWDBzSW5KbGMyOXNkbVZrUkdWd1pXNWtaVzVqYVdWeklqcGJleUoxY21raU9pSnZZMms2THk5blkzSXVhVzh2ZEdWcmRHOXVMWEpsYkdWaGMyVnpMMmRwZEdoMVlpNWpiMjB2ZEdWcmRHOXVZMlF2Y0dsd1pXeHBibVV2WTIxa0wyZHBkQzFwYm1sMElpd2laR2xuWlhOMElqcDdJbk5vWVRJMU5pSTZJalUzT1dNMU5qUTNNekpqT1RabE1tSmlNek0zWVdWbU1qSXpZelZrTlRKbE5XTmxZekkzTjJZeFpqUTJZbVV3WldGaE1HUm1NR1l5TnprM1pUQmpZalFpZlgwc2V5SjFjbWtpT2lKdlkyazZMeTluYUdOeUxtbHZMMnB2YjNOMGRtUm5MMmRwZEMxdVpYaDBMWFJoWnlJc0ltUnBaMlZ6ZENJNmV5SnphR0V5TlRZaU9pSTJZekU1TUdOaU16QmlPREl5TXpVelltSXpNV1ptT1RSaU9UbG1NR1ppT1dKaVl6WmpNR1UxTmpsbVlqZG1NVGcxTWpoaE5UQmxPVGhtTVRrMFlUSTBJbjE5TEhzaWRYSnBJam9pYjJOcE9pOHZjbVZuYVhOMGNua3VZV05qWlhOekxuSmxaR2hoZEM1amIyMHZkV0pwT0M5MVlta3RiV2x1YVcxaGJDSXNJbVJwWjJWemRDSTZleUp6YUdFeU5UWWlPaUkxWTJaaVlXWTBOV05oT1RZNE1EWTVNVGM0TXpCak1UZ3paVGxtTXpka1pqSmxPVEV6WWpFNE4yRmhaR0l6TW1VNE9XWmtPRE5tWVRRMU5XVmlZV0UySW4xOUxIc2lkWEpwSWpvaWIyTnBPaTh2Wkc5amEyVnlMbWx2TDJ4cFluSmhjbmt2YldGMlpXNGlMQ0prYVdkbGMzUWlPbnNpYzJoaE1qVTJJam9pWldZMll6ZzFNVEkxTkRRNU1EZ3lOemMxWlRBeE1tSTNNbUkzTkdNMk1XRmhaR1V3T0Roa1l6STNaR1ppTUdKbE9HTmpNVEppT0RVME16aGlPR0k1TUNKOWZTeDdJblZ5YVNJNkltOWphVG92TDJkamNpNXBieTlyWVc1cGEyOHRjSEp2YW1WamRDOWxlR1ZqZFhSdmNpSXNJbVJwWjJWemRDSTZleUp6YUdFeU5UWWlPaUpqTmpFMk5qY3hOMlkzWm1Vd1lqZGtZVFEwT1RBNFl6azROakV6TjJWalptVmhZakl4WmpNeFpXTXpPVGt5WmpabE1USTRabVptT0dFNU5HSmxPR0UxSW4xOUxIc2lkWEpwSWpvaWIyTnBPaTh2Wkc5amEyVnlMbWx2TDJ4cFluSmhjbmt2WW1GemFDSXNJbVJwWjJWemRDSTZleUp6YUdFeU5UWWlPaUpqTlRJell6WXpObUkzTWpJek16bG1OREZpTm1FME16RmlORFExT0RoaFlqSm1Oell5WXpWa1pUVmxZek5pWkRjNU5qUTBNakJtWmprNE1tWmlNV1E1SW4xOUxIc2lkWEpwSWpvaWIyTnBPaTh2WjJoamNpNXBieTlxYjI5emRIWmtaeTloYkhCcGJtVXRhR1ZzYlNJc0ltUnBaMlZ6ZENJNmV5SnphR0V5TlRZaU9pSXhOamRsTldVNFl6bGxOV000WVdVM1l6SXhNamN5TWpneU9EQXpZMlJoWm1Sa05tVXpaR1UwTWpSak1HTTNNalE0WkRjeE9UazJPVFU1WkRnMU1XTTBJbjE5TEhzaWRYSnBJam9pYjJOcE9pOHZZM1Z5YkdsdFlXZGxjeTlqZFhKc0lpd2laR2xuWlhOMElqcDdJbk5vWVRJMU5pSTZJakF6TVdSbU56ZGhNVEZsTldWa1pHVmtPRFF3WW1NM05qRmhPRFExWldGaU5tVXpZekpsWkdWbE1qSTJOamxtWWpoaFpEWmtOVGswT0RSaU5tRXhZelFpZlgxZGZTd2ljblZ1UkdWMFlXbHNjeUk2ZXlKaWRXbHNaR1Z5SWpwN0ltbGtJam9pYUhSMGNITTZMeTkwWld0MGIyNHVaR1YyTDJOb1lXbHVjeTkyTWlKOUxDSnRaWFJoWkdGMFlTSTZleUpwYm5adlkyRjBhVzl1U1VRaU9pSmhabU16WXpsaE15MDNOR1ZsTFRSa05tSXRPVGd4TnkxaU1qRTRNamhtTXpjeU5EQWlMQ0p6ZEdGeWRHVmtUMjRpT2lJeU1ESTBMVEF6TFRBeVZEQXdPalV3T2pFMFdpSXNJbVpwYm1semFHVmtUMjRpT2lJeU1ESTBMVEF6TFRBeVZEQXdPalV6T2pNeldpSjlmWDE5Iiwic2lnbmF0dXJlcyI6W3sia2V5aWQiOiJTSEEyNTY6ZHBZSHNvWDcyZFRGQW44M0NuTkV3QktMc21XSkRmdzVhTjJBUHR2WmUyMCIsInNpZyI6Ik1FUUNJRHVDU05sb1Bhc2hzUXBscFZmc0tsK1d2YXlvMTBGemx1TnBCZUN2MTlTTEFpQkFHdXVXWWQ3YUdzT2V5MWRDUzVLOVI0K3RIekZxay9TdWY0eUxjdHhZV3c9PSJ9XX0=
+    chains.tekton.dev/signed: "true"
+  creationTimestamp: "2024-03-02T00:50:14Z"
+  finalizers:
+  - chains.tekton.dev/pipelinerun
+  generateName: idec-image-builds-run-
+  generation: 1
+  labels:
+    tekton.dev/pipeline: idec-image-builds
+    triggers.tekton.dev/eventlistener: idec-image-builds
+    triggers.tekton.dev/trigger: github-listener
+    triggers.tekton.dev/triggers-eventid: 6a9b02e2-68a4-4a41-b616-098cc8eb9533
+  name: idec-image-builds-run-w94kx
+  namespace: idec
+  resourceVersion: "137500209"
+  uid: afc3c9a3-74ee-4d6b-9817-b21828f37240
+spec:
+  params:
+  - name: gitrevision
+    value: dfbebf4dc16160c9a9ab81a77fb9d7644530939a
+  - name: repo-url
+    value: https://github.com/joostvdg/ingress-dns-export-controller
+  - name: base
+    value: "0.2"
+  - name: registry
+    value: harbor.home.lab
+  - name: repo
+    value: homelab/idec
+  pipelineRef:
+    name: idec-image-builds
+  taskRunTemplate:
+    serviceAccountName: default
+  timeouts:
+    pipeline: 1h0m0s
+  workspaces:
+  - name: checkout
+    volumeClaimTemplate:
+      metadata:
+        creationTimestamp: null
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      status: {}
+  - name: registry-credentials
+    secret:
+      secretName: kaniko-harbor
+  - emptyDir: {}
+    name: maven-settings
+  - emptyDir: {}
+    name: helm-config
+status:
+  childReferences:
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-fetch-source
+    pipelineTaskName: fetch-source
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-git-next-tag
+    pipelineTaskName: git-next-tag
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-maven-run
+    pipelineTaskName: maven-run
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-create-and-push-git-tag
+    pipelineTaskName: create-and-push-git-tag
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-kaniko-arm64
+    pipelineTaskName: kaniko-arm64
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-publish-helm-chart
+    pipelineTaskName: publish-helm-chart
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: idec-image-builds-run-w94kx-notify-build-failure
+    pipelineTaskName: notify-build-failure
+    whenExpressions:
+    - input: $(tasks.maven-run.status)
+      operator: in
+      values:
+      - Failed
+  completionTime: "2024-03-02T00:53:33Z"
+  conditions:
+  - lastTransitionTime: "2024-03-02T00:53:33Z"
+    message: 'Tasks Completed: 7 (Failed: 1, Cancelled 0), Skipped: 3'
+    reason: Failed
+    status: "False"
+    type: Succeeded
+  finallyStartTime: "2024-03-02T00:53:21Z"
+  pipelineSpec:
+    description: |
+      This pipeline clones a git repo, then echoes the README file to the stdout.
+    finally:
+    - name: notify-build-failure
+      params:
+      - name: webhook-secret
+        value: slack-webhook
+      - name: message
+        value: Maven Build failed [https://github.com/joostvdg/ingress-dns-export-controller
+          - dfbebf4dc16160c9a9ab81a77fb9d7644530939a]
+      taskRef:
+        kind: Task
+        name: send-to-webhook-slack
+      when:
+      - input: $(tasks.maven-run.status)
+        operator: in
+        values:
+        - Failed
+    - name: notify-fetch-failure
+      params:
+      - name: webhook-secret
+        value: slack-webhook
+      - name: message
+        value: Cannot fetch source [https://github.com/joostvdg/ingress-dns-export-controller
+          - dfbebf4dc16160c9a9ab81a77fb9d7644530939a]
+      taskRef:
+        kind: Task
+        name: send-to-webhook-slack
+      when:
+      - input: $(tasks.fetch-source.status)
+        operator: in
+        values:
+        - Failed
+    - name: notify-kaniko-arm-failure
+      params:
+      - name: webhook-secret
+        value: slack-webhook
+      - name: message
+        value: Kaniko ARM64 Build failed [https://github.com/joostvdg/ingress-dns-export-controller
+          - dfbebf4dc16160c9a9ab81a77fb9d7644530939a]
+      taskRef:
+        kind: Task
+        name: send-to-webhook-slack
+      when:
+      - input: $(tasks.kaniko-arm64.status)
+        operator: in
+        values:
+        - Failed
+    - name: notify-helm-failure
+      params:
+      - name: webhook-secret
+        value: slack-webhook
+      - name: message
+        value: Helm Publish failed [https://github.com/joostvdg/ingress-dns-export-controller
+          - dfbebf4dc16160c9a9ab81a77fb9d7644530939a]
+      taskRef:
+        kind: Task
+        name: send-to-webhook-slack
+      when:
+      - input: $(tasks.publish-helm-chart.status)
+        operator: in
+        values:
+        - Failed
+    params:
+    - description: The git repo URL to clone from.
+      name: repo-url
+      type: string
+    - description: version Base to query Git tags for (e.g., v2.1.*)
+      name: base
+      type: string
+    - description: git revision to checkout
+      name: gitrevision
+      type: string
+    - default: ghcr.io/joostvdg/git-next-tag:0.5.4-alpine
+      description: image to use for the git-next-tag task
+      name: image
+      type: string
+    - default: Dockerfile
+      description: dockerfile to use for the kaniko task
+      name: dockerfile
+      type: string
+    - default: ghcr.io
+      description: registry to push to
+      name: registry
+      type: string
+    - default: joostvdg/idec
+      description: repo to push to
+      name: repo
+      type: string
+    - default: latest
+      description: tag to push to
+      name: tag
+      type: string
+    tasks:
+    - name: fetch-source
+      params:
+      - name: url
+        value: https://github.com/joostvdg/ingress-dns-export-controller
+      - name: revision
+        value: dfbebf4dc16160c9a9ab81a77fb9d7644530939a
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+      - name: output
+        workspace: checkout
+    - name: git-next-tag
+      params:
+      - name: base
+        value: "0.2"
+      - name: image
+        value: ghcr.io/joostvdg/git-next-tag:0.5.4-alpine
+      runAfter:
+      - fetch-source
+      taskRef:
+        kind: Task
+        name: git-next-tag
+      workspaces:
+      - name: source
+        workspace: checkout
+    - name: maven-run
+      params:
+      - name: GOALS
+        value:
+        - clean
+        - verify
+      - name: MAVEN_IMAGE
+        value: maven:3.9-eclipse-temurin-21
+      runAfter:
+      - fetch-source
+      taskRef:
+        kind: Task
+        name: maven
+      workspaces:
+      - name: maven-settings
+        workspace: maven-settings
+      - name: source
+        workspace: checkout
+    - name: create-and-push-git-tag
+      params:
+      - name: TAG
+        value: $(tasks.git-next-tag.results.NEXT_TAG)
+      - name: GITHUB_USERNAME
+        value: tekton-bot
+      - name: GITHUB_EMAIL
+        value: joostvdg+tekton-bot@gmail.com
+      runAfter:
+      - git-next-tag
+      taskRef:
+        kind: Task
+        name: github-create-tag
+      workspaces:
+      - name: source
+        workspace: checkout
+    - name: kaniko-arm64
+      params:
+      - name: IMAGE
+        value: harbor.home.lab/homelab/idec:$(tasks.git-next-tag.results.NEXT_TAG)
+      - name: DOCKERFILE
+        value: Dockerfile
+      - name: EXTRA_ARGS
+        value:
+        - --customPlatform=linux/arm64
+        - --skip-tls-verify-registry=harbor.home.lab
+      runAfter:
+      - git-next-tag
+      taskRef:
+        kind: Task
+        name: kaniko
+      workspaces:
+      - name: source
+        workspace: checkout
+      - name: dockerconfig
+        workspace: registry-credentials
+    - name: publish-helm-chart
+      params:
+      - name: HELM_CA_FILE_SECRET
+        value: kearos-ca
+      - name: REGISTRY_SECRET_NAME
+        value: harbor-helm
+      - name: PACKAGE_VERSION
+        value: $(tasks.git-next-tag.results.NEXT_TAG)
+      - name: HELM_CHART_VERSION
+        value: $(tasks.git-next-tag.results.NEXT_TAG)
+      - name: HELM_CHART_NAME
+        value: ingress-dns-export-controller
+      - name: HELM_CHART_DIR
+        value: helm
+      - name: HELM_REPO
+        value: charts
+      - name: HELM_REGISTRY_HOST
+        value: harbor.home.lab:443
+      - name: HELM_REGISTRY_URL
+        value: oci://harbor.home.lab:443
+      runAfter:
+      - git-next-tag
+      taskRef:
+        kind: Task
+        name: helm-publish-package
+      workspaces:
+      - name: source
+        workspace: checkout
+      - name: helm
+        workspace: helm-config
+    workspaces:
+    - description: |
+        This workspace contains the cloned repo files, so they can be read by the
+        next task.
+      name: checkout
+    - description: |
+        This workspace contains the registry credentials, so they can be read by the
+        next task.
+      name: registry-credentials
+    - description: |
+        This workspace contains the maven settings, so they can be read by the
+        next task.
+      name: maven-settings
+    - description: |
+        This workspace contains the helm repository config.
+        As the container has a read-only file system, the helm config is mounted as a workspace.
+      name: helm-config
+  provenance:
+    featureFlags:
+      AwaitSidecarReadiness: true
+      Coschedule: workspaces
+      DisableAffinityAssistant: false
+      DisableCredsInit: false
+      EnableAPIFields: beta
+      EnableCELInWhenExpression: false
+      EnableKeepPodOnCancel: false
+      EnableProvenanceInStatus: true
+      EnableStepActions: false
+      EnableTektonOCIBundles: false
+      EnforceNonfalsifiability: none
+      MaxResultSize: 4096
+      RequireGitSSHSecretKnownHosts: false
+      ResultExtractionMethod: termination-message
+      RunningInEnvWithInjectedSidecars: true
+      ScopeWhenExpressionsToTask: false
+      SendCloudEventsForRuns: false
+      SetSecurityContext: false
+      VerificationNoMatchPolicy: ignore
+  skippedTasks:
+  - name: notify-fetch-failure
+    reason: When Expressions evaluated to false
+    whenExpressions:
+    - input: Succeeded
+      operator: in
+      values:
+      - Failed
+  - name: notify-kaniko-arm-failure
+    reason: When Expressions evaluated to false
+    whenExpressions:
+    - input: Succeeded
+      operator: in
+      values:
+      - Failed
+  - name: notify-helm-failure
+    reason: When Expressions evaluated to false
+    whenExpressions:
+    - input: Succeeded
+      operator: in
+      values:
+      - Failed
+  startTime: "2024-03-02T00:50:14Z"
