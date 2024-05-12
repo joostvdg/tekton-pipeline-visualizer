@@ -6,6 +6,8 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 
+// TODO: record Safe Parameters?
+
 /**
  * Represents the status of a Tekton Pipeline, capturing the results, stages, status, start and end
  * time and duration.
