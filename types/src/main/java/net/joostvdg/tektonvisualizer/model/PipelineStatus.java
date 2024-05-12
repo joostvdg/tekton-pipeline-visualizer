@@ -31,8 +31,9 @@ public record PipelineStatus(
   public PipelineStatus {
     Objects.requireNonNull(pipelineIdentifier, "PipelineIdentifier cannot be null");
     Objects.requireNonNull(name, "Name cannot be null");
-    Objects.requireNonNull(results, "Results cannot be null");
-    Objects.requireNonNull(stages, "Stages cannot be null");
+    // TODO: Add validation for stages
+    // Objects.requireNonNull(stages, "Stages cannot be null");
+    // results should be nullable, as you can have a pipeline without results
     Objects.requireNonNull(status, "Status cannot be null");
     Objects.requireNonNull(instantOfCompletion, "instantOfCompletion cannot be null");
     Objects.requireNonNull(instantOfStart, "instantOfStart cannot be null");

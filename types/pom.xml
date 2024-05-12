@@ -6,7 +6,7 @@
 
   <groupId>net.joostvdg.tekton-visualizer</groupId>
   <artifactId>types</artifactId>
-  <version>0.2.2</version>
+  <version>0.2.3</version>
   <name>types</name>
   <url>https://blog.joostvdg.net</url>
 
