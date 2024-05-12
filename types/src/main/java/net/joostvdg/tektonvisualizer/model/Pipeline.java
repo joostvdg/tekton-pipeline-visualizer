@@ -3,7 +3,8 @@ package net.joostvdg.tektonvisualizer.model;
 
 import java.util.Objects;
 
-public record Pipeline(String name, String namespace, String cluster, String identifier) {
+public record Pipeline(String name, String namespace, String cluster, String identifier)
+    implements TektonResourceType {
   public Pipeline {
     Objects.requireNonNull(name, "Name cannot be null");
     Objects.requireNonNull(namespace, "Namespace cannot be null");
@@ -27,9 +28,5 @@ public record Pipeline(String name, String namespace, String cluster, String ide
 
   public String cluster() {
     return cluster;
-  }
-
-  public String identifier() {
-    return identifier;
   }
 }

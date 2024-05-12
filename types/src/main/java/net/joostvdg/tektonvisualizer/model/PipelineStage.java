@@ -11,7 +11,8 @@ public record PipelineStage(
     Status status,
     Duration duration,
     Integer order,
-    List<PipelineStep> steps) {
+    List<PipelineStep> steps)
+    implements TektonResourceType {
   public PipelineStage {
     Objects.requireNonNull(identifier, "Identifier cannot be null");
     Objects.requireNonNull(name, "Name cannot be null");
