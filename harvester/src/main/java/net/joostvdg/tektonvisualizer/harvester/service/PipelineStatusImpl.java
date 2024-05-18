@@ -3,20 +3,24 @@ package net.joostvdg.tektonvisualizer.harvester.service;
 
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesApi;
+import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
+import io.kubernetes.client.util.generic.options.ListOptions;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 
-import io.kubernetes.client.util.generic.options.ListOptions;
+import net.joostvdg.tektonvisualizer.harvester.parser.TaskRunParser;
 import net.joostvdg.tektonvisualizer.harvester.parser.TektonResourceParser;
+import net.joostvdg.tektonvisualizer.model.PipelineStage;
 import net.joostvdg.tektonvisualizer.model.PipelineStatus;
 import net.joostvdg.tektonvisualizer.model.TektonResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 
 @Service
 public class PipelineStatusImpl implements PipelineStatusService {
@@ -26,12 +30,14 @@ public class PipelineStatusImpl implements PipelineStatusService {
   private final TektonResourceParser pipelineStatusParser;
 
   private final Logger logger = LoggerFactory.getLogger(PipelineStatusImpl.class);
+  private final TaskRunParser taskRunParser;
 
   private HashMap<String, PipelineStatus> knownPipelineStatuses;
 
-  public PipelineStatusImpl(ApiClient apiClient, TektonResourceParser pipelineStatusParser) {
+  public PipelineStatusImpl(ApiClient apiClient, TektonResourceParser pipelineStatusParser, TaskRunParser taskRunParser) {
     this.apiClient = apiClient;
     this.pipelineStatusParser = pipelineStatusParser;
+    this.taskRunParser = taskRunParser;
   }
 
   @PostConstruct
@@ -71,15 +77,47 @@ public class PipelineStatusImpl implements PipelineStatusService {
     for (var pipelineRun : pipelineRuns.getItems()) {
       var runName = pipelineRun.getMetadata().getName();
       if (knownPipelineStatuses.containsKey(runName)) {
-          logger.debug("PipelineRun: {} already known.", runName);
-          continue;
+        logger.debug("PipelineRun: {} already known.", runName);
+        continue;
       }
       Optional<TektonResourceType> pipelineStatus = pipelineStatusParser.parse(pipelineRun);
       if (pipelineStatus.isEmpty()) {
         logger.warn("Could not parse PipelineRun: {}", runName);
         continue;
       }
-      knownPipelineStatuses.put(runName, (PipelineStatus) pipelineStatus.get());
+      var pipelineStatusObj = (PipelineStatus) pipelineStatus.get();
+      knownPipelineStatuses.put(runName,pipelineStatusObj);
+
+      // TODO: we can collect the order via the status.childReferences
+      List<PipelineStage> pipelineStages = new ArrayList<>();
+      var taskRuns = getTaskRunsForPipelineRun(runName);
+      for (var taskRun : taskRuns) {
+        var pipelineStage = taskRunParser.parse(taskRun);
+        if (pipelineStage.isEmpty()) {
+            logger.warn("Could not parse TaskRun: {}", taskRun.getMetadata().getName());
+            continue;
+        }
+        pipelineStages.add((PipelineStage) pipelineStage.get());
+      }
+      pipelineStatusObj.stages().addAll(pipelineStages);
     }
+  }
+
+  public List<DynamicKubernetesObject> getTaskRunsForPipelineRun(String pipelineRunName) {
+    DynamicKubernetesApi dynamicApi = new DynamicKubernetesApi("tekton.dev", "v1", "taskruns", apiClient);
+    ListOptions listOptions = new ListOptions();
+    listOptions.setLabelSelector("tekton.dev/pipelineRun=" + pipelineRunName);
+    // Attempt to limit fields retrieved. Note: This might not work as expected for nested fields.
+    listOptions.setFieldSelector("metadata,spec.taskRef,status.conditions");
+
+    try {
+      var taskRuns = dynamicApi.list("default", listOptions).getObject();
+      if (taskRuns != null && !taskRuns.getItems().isEmpty()) {
+        return taskRuns.getItems();
+      }
+    } catch (Exception e) {
+        logger.error("Could not retrieve TaskRuns for PipelineRun: {}", pipelineRunName, e);
+    }
+    return List.of();
   }
 }

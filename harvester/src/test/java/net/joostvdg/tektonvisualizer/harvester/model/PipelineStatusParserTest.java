@@ -30,7 +30,7 @@ class PipelineStatusParserTest {
 
   @Test
   void testParse() {
-    var expectedPipelineName = "idec-image-builds-run-w94kx";
+    var expectedPipelineName = "idec-image-builds-run-tqzgl-r-sl49z";
     var testPipelineStatus = loadPipelineRun();
     assertEquals("pipelinerun", testPipelineStatus.getKind().toLowerCase(Locale.ROOT));
     assertEquals(expectedPipelineName, testPipelineStatus.getMetadata().getName());

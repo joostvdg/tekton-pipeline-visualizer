@@ -5,11 +5,9 @@ import com.google.gson.JsonElement;
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Optional;
-import net.joostvdg.tektonvisualizer.model.ExecutionStatus;
-import net.joostvdg.tektonvisualizer.model.PipelineStatus;
-import net.joostvdg.tektonvisualizer.model.Status;
-import net.joostvdg.tektonvisualizer.model.TektonResourceType;
+import java.util.*;
+
+import net.joostvdg.tektonvisualizer.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -62,19 +60,83 @@ public class PipelineStatusParser implements TektonResourceParser {
     Status status = new Status(success, explanation, executionStatus);
 
     logger.debug("Found PipelineRun: {} in namespace: {} with status: {}", name, namespace, status);
-    // TODO: add results and stages
+    // TODO: collect the TaskRun references from the PipelineRun's Status and store them in the
 
-    // TODO: Parse Stages from PipelineRun.status.childReferences -> TaskRuns
+    List<PipelineStage> pipelineStages = new ArrayList<>();
+    var childReferences = statusData.getAsJsonObject().get("childReferences").getAsJsonArray();
+    if (childReferences == null || childReferences.isEmpty()) {
+      logger.warn(
+          "No child references found for PipelineRun: {} in namespace: {}", name, namespace);
+    } else {
+      int order = 0;
+      for (JsonElement childReference : childReferences) {
+        String taskRunId = childReference.getAsJsonObject().get("name").getAsString();
+        String taskName = childReference.getAsJsonObject().get("pipelineTaskName").getAsString();
+        var pipelineStage =
+            new PipelineStage(
+                taskRunId,
+                taskName,
+                new Status(true, "N/A", ExecutionStatus.SUCCEEDED),
+                Duration.ofSeconds(0),
+                order++,
+                List.of());
+        pipelineStages.add(pipelineStage);
+      }
+    }
+
+    // TODO: parse result
+    var results = parseResults(statusData.getAsJsonObject().get("results"));
+
+    // TODO also create PipelineStage for each Skipped Task
+
+    String rerunOf = pipelineRun.getMetadata().getLabels().getOrDefault("dashboard.tekton.dev/rerunOf", "");
+    String eventListener = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/eventlistener", "");
+    String trigger = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/trigger", "");
+    String triggersEventId = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/triggers-eventid", "");
+    boolean rerun = !rerunOf.isEmpty();
+
+    // Assuming TriggerInfo is a class that holds the trigger information
+    // TriggerInfo triggerInfo = new TriggerInfo(rerunOf, pipeline, eventListener, trigger, triggersEventId);
+    PipelineTrigger triggerInfo = new PipelineTrigger(TriggerType.GitHub, trigger, triggersEventId, rerun, rerunOf, eventListener);
+    logger.debug("Collected Trigger Information: {}", triggerInfo);
+
     PipelineStatus pipelineStatus =
         new PipelineStatus.Builder()
             .pipelineIdentifier("pipelineId")
             .name(name)
             .status(status)
+            .stages(pipelineStages)
             .instantOfCompletion(completion)
             .instantOfStart(start)
             .duration(duration)
+            .trigger(triggerInfo)
+            .results(results)
             .build();
 
     return Optional.of(pipelineStatus);
+  }
+
+  private Map<String, String> parseResults(JsonElement resultsMap) {
+    // these are KeyValue pairs
+    // { "name": "IMAGE_URL",
+    //   value": "harbor.home.lab/homelab/idec:0.2.5"
+    // }
+    var results = new HashMap<String, String>();
+    if (resultsMap == null) {
+      return results;
+    }
+    for (JsonElement result : resultsMap.getAsJsonArray()) {
+      String name = result.getAsJsonObject().get("name").getAsString();
+      String value = result.getAsJsonObject().get("value").getAsString();
+      results.put(name, value);
+    }
+
+    return results;
+  }
+
+  @Override
+  public List<TektonResourceType> parseList(DynamicKubernetesObject resource) {
+    // TODO: implement
+    return List.of();
   }
 }

@@ -1,0 +1,398 @@
+{
+    "apiVersion": "tekton.dev/v1",
+    "kind": "TaskRun",
+    "metadata": {
+        "annotations": {
+            "chains.tekton.dev/cert-taskrun-57502433-b65a-44c3-89be-bf23a8664b22": "",
+            "chains.tekton.dev/chain-taskrun-57502433-b65a-44c3-89be-bf23a8664b22": "",
+            "chains.tekton.dev/payload-taskrun-57502433-b65a-44c3-89be-bf23a8664b22": "eyJfdHlwZSI6Imh0dHBzOi8vaW4tdG90by5pby9TdGF0ZW1lbnQvdjAuMSIsInByZWRpY2F0ZVR5cGUiOiJodHRwczovL3Nsc2EuZGV2L3Byb3ZlbmFuY2UvdjAuMiIsInN1YmplY3QiOm51bGwsInByZWRpY2F0ZSI6eyJidWlsZGVyIjp7ImlkIjoiaHR0cHM6Ly90ZWt0b24uZGV2L2NoYWlucy92MiJ9LCJidWlsZFR5cGUiOiJ0ZWt0b24uZGV2L3YxYmV0YTEvVGFza1J1biIsImludm9jYXRpb24iOnsiY29uZmlnU291cmNlIjp7fSwicGFyYW1ldGVycyI6eyJjcnRGaWxlTmFtZSI6ImNhLWJ1bmRsZS5jcnQiLCJkZWxldGVFeGlzdGluZyI6InRydWUiLCJkZXB0aCI6IjEiLCJnaXRJbml0SW1hZ2UiOiJnY3IuaW8vdGVrdG9uLXJlbGVhc2VzL2dpdGh1Yi5jb20vdGVrdG9uY2QvcGlwZWxpbmUvY21kL2dpdC1pbml0OnYwLjQ0LjUiLCJodHRwUHJveHkiOiIiLCJodHRwc1Byb3h5IjoiIiwibm9Qcm94eSI6IiIsInJlZnNwZWMiOiIiLCJyZXZpc2lvbiI6ImY2OWRjOTQ3NDM0NTJmMGVmODA5MDRhYjM1YjQ0YmZiODU5Y2NmMzEiLCJzcGFyc2VDaGVja291dERpcmVjdG9yaWVzIjoiIiwic3NsVmVyaWZ5IjoidHJ1ZSIsInN1YmRpcmVjdG9yeSI6IiIsInN1Ym1vZHVsZXMiOiJ0cnVlIiwidXJsIjoiaHR0cHM6Ly9naXRodWIuY29tL2pvb3N0dmRnL2luZ3Jlc3MtZG5zLWV4cG9ydC1jb250cm9sbGVyLmdpdCIsInVzZXJIb21lIjoiL2hvbWUvZ2l0IiwidmVyYm9zZSI6InRydWUifSwiZW52aXJvbm1lbnQiOnsiYW5ub3RhdGlvbnMiOnsicGlwZWxpbmUudGVrdG9uLmRldi9hZmZpbml0eS1hc3Npc3RhbnQiOiJhZmZpbml0eS1hc3Npc3RhbnQtMmExZDhlYmI3YiIsInBpcGVsaW5lLnRla3Rvbi5kZXYvcmVsZWFzZSI6Ijg3NmI4MWUiLCJ0ZWt0b24uZGV2L2NhdGVnb3JpZXMiOiJHaXQiLCJ0ZWt0b24uZGV2L2Rpc3BsYXlOYW1lIjoiZ2l0IGNsb25lIiwidGVrdG9uLmRldi9waXBlbGluZXMubWluVmVyc2lvbiI6IjAuMzguMCIsInRla3Rvbi5kZXYvcGxhdGZvcm1zIjoibGludXgvYW1kNjQsbGludXgvczM5MHgsbGludXgvcHBjNjRsZSxsaW51eC9hcm02NCIsInRla3Rvbi5kZXYvdGFncyI6ImdpdCJ9LCJsYWJlbHMiOnsiYXBwLmt1YmVybmV0ZXMuaW8vbWFuYWdlZC1ieSI6InRla3Rvbi1waXBlbGluZXMiLCJhcHAua3ViZXJuZXRlcy5pby92ZXJzaW9uIjoiMC45IiwiZGFzaGJvYXJkLnRla3Rvbi5kZXYvcmVydW5PZiI6ImlkZWMtaW1hZ2UtYnVpbGRzLXJ1bi10cXpnbC1yLXprbGZtIiwiZ2VuZXJhdGUua3l2ZXJuby5pby9jbG9uZS1zb3VyY2UiOiIiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3BvbGljeS1uYW1lIjoic3luYy10ZWt0b24tdGFza3MiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3BvbGljeS1uYW1lc3BhY2UiOiIiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3J1bGUtbmFtZSI6InN5bmMtdGVrdG9uLXRhc2tzIiwiZ2VuZXJhdGUua3l2ZXJuby5pby9zb3VyY2UtZ3JvdXAiOiJ0ZWt0b24uZGV2IiwiZ2VuZXJhdGUua3l2ZXJuby5pby9zb3VyY2Uta2luZCI6IlRhc2siLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3NvdXJjZS1uYW1lc3BhY2UiOiJ0ZWt0b24tdGFza3MiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3NvdXJjZS11aWQiOiI0NTI1NGQ0Ni03NWYwLTRkMTMtOGFhYy04NmMyNzBlMDM3NmQiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3NvdXJjZS12ZXJzaW9uIjoidjEiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3RyaWdnZXItZ3JvdXAiOiIiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3RyaWdnZXIta2luZCI6Ik5hbWVzcGFjZSIsImdlbmVyYXRlLmt5dmVybm8uaW8vdHJpZ2dlci1uYW1lc3BhY2UiOiIiLCJnZW5lcmF0ZS5reXZlcm5vLmlvL3RyaWdnZXItdWlkIjoiMzYzMGEyMjgtMGZiMy00ZDI3LThjZTYtMmFkMzI0MmY3NjY3IiwiZ2VuZXJhdGUua3l2ZXJuby5pby90cmlnZ2VyLXZlcnNpb24iOiJ2MSIsImt1c3RvbWl6ZS50b29sa2l0LmZsdXhjZC5pby9uYW1lIjoidGVrdG9uLXRhc2tzLTMiLCJrdXN0b21pemUudG9vbGtpdC5mbHV4Y2QuaW8vbmFtZXNwYWNlIjoiZmx1eC1zeXN0ZW0iLCJ0ZWt0b24uZGV2L21lbWJlck9mIjoidGFza3MiLCJ0ZWt0b24uZGV2L3BpcGVsaW5lIjoiaWRlYy1pbWFnZS1idWlsZHMiLCJ0ZWt0b24uZGV2L3BpcGVsaW5lUnVuIjoiaWRlYy1pbWFnZS1idWlsZHMtcnVuLXRxemdsLXItc2w0OXoiLCJ0ZWt0b24uZGV2L3BpcGVsaW5lVGFzayI6ImZldGNoLXNvdXJjZSIsInRla3Rvbi5kZXYvdGFzayI6ImdpdC1jbG9uZSIsInRyaWdnZXJzLnRla3Rvbi5kZXYvZXZlbnRsaXN0ZW5lciI6ImlkZWMtaW1hZ2UtYnVpbGRzIiwidHJpZ2dlcnMudGVrdG9uLmRldi90cmlnZ2VyIjoiZ2l0aHViLWxpc3RlbmVyIiwidHJpZ2dlcnMudGVrdG9uLmRldi90cmlnZ2Vycy1ldmVudGlkIjoiYjA5YTk4MGUtMmI1ZC00MzIxLWFmYWItMDY4YWMxZDJmNDVkIn19fSwiYnVpbGRDb25maWciOnsic3RlcHMiOlt7ImVudHJ5UG9pbnQiOiIjIS91c3IvYmluL2VudiBzaFxuc2V0IC1ldVxuXG5pZiBbIFwiJHtQQVJBTV9WRVJCT1NFfVwiID0gXCJ0cnVlXCIgXSA7IHRoZW5cbiAgc2V0IC14XG5maVxuXG5pZiBbIFwiJHtXT1JLU1BBQ0VfQkFTSUNfQVVUSF9ESVJFQ1RPUllfQk9VTkR9XCIgPSBcInRydWVcIiBdIDsgdGhlblxuICBjcCBcIiR7V09SS1NQQUNFX0JBU0lDX0FVVEhfRElSRUNUT1JZX1BBVEh9Ly5naXQtY3JlZGVudGlhbHNcIiBcIiR7UEFSQU1fVVNFUl9IT01FfS8uZ2l0LWNyZWRlbnRpYWxzXCJcbiAgY3AgXCIke1dPUktTUEFDRV9CQVNJQ19BVVRIX0RJUkVDVE9SWV9QQVRIfS8uZ2l0Y29uZmlnXCIgXCIke1BBUkFNX1VTRVJfSE9NRX0vLmdpdGNvbmZpZ1wiXG4gIGNobW9kIDQwMCBcIiR7UEFSQU1fVVNFUl9IT01FfS8uZ2l0LWNyZWRlbnRpYWxzXCJcbiAgY2htb2QgNDAwIFwiJHtQQVJBTV9VU0VSX0hPTUV9Ly5naXRjb25maWdcIlxuZmlcblxuaWYgWyBcIiR7V09SS1NQQUNFX1NTSF9ESVJFQ1RPUllfQk9VTkR9XCIgPSBcInRydWVcIiBdIDsgdGhlblxuICBjcCAtUiBcIiR7V09SS1NQQUNFX1NTSF9ESVJFQ1RPUllfUEFUSH1cIiBcIiR7UEFSQU1fVVNFUl9IT01FfVwiLy5zc2hcbiAgY2htb2QgNzAwIFwiJHtQQVJBTV9VU0VSX0hPTUV9XCIvLnNzaFxuICBjaG1vZCAtUiA0MDAgXCIke1BBUkFNX1VTRVJfSE9NRX1cIi8uc3NoLypcbmZpXG5cbmlmIFsgXCIke1dPUktTUEFDRV9TU0xfQ0FfRElSRUNUT1JZX0JPVU5EfVwiID0gXCJ0cnVlXCIgXSA7IHRoZW5cbiAgIGV4cG9ydCBHSVRfU1NMX0NBUEFUSD1cIiR7V09SS1NQQUNFX1NTTF9DQV9ESVJFQ1RPUllfUEFUSH1cIlxuICAgaWYgWyBcIiR7UEFSQU1fQ1JUX0ZJTEVOQU1FfVwiICE9IFwiXCIgXSA7IHRoZW5cbiAgICAgIGV4cG9ydCBHSVRfU1NMX0NBSU5GTz1cIiR7V09SS1NQQUNFX1NTTF9DQV9ESVJFQ1RPUllfUEFUSH0vJHtQQVJBTV9DUlRfRklMRU5BTUV9XCJcbiAgIGZpXG5maVxuQ0hFQ0tPVVRfRElSPVwiJHtXT1JLU1BBQ0VfT1VUUFVUX1BBVEh9LyR7UEFSQU1fU1VCRElSRUNUT1JZfVwiXG5cbmNsZWFuZGlyKCkge1xuICAjIERlbGV0ZSBhbnkgZXhpc3RpbmcgY29udGVudHMgb2YgdGhlIHJlcG8gZGlyZWN0b3J5IGlmIGl0IGV4aXN0cy5cbiAgI1xuICAjIFdlIGRvbid0IGp1c3QgXCJybSAtcmYgJHtDSEVDS09VVF9ESVJ9XCIgYmVjYXVzZSAke0NIRUNLT1VUX0RJUn0gbWlnaHQgYmUgXCIvXCJcbiAgIyBvciB0aGUgcm9vdCBvZiBhIG1vdW50ZWQgdm9sdW1lLlxuICBpZiBbIC1kIFwiJHtDSEVDS09VVF9ESVJ9XCIgXSA7IHRoZW5cbiAgICAjIERlbGV0ZSBub24taGlkZGVuIGZpbGVzIGFuZCBkaXJlY3Rvcmllc1xuICAgIHJtIC1yZiBcIiR7Q0hFQ0tPVVRfRElSOj99XCIvKlxuICAgICMgRGVsZXRlIGZpbGVzIGFuZCBkaXJlY3RvcmllcyBzdGFydGluZyB3aXRoIC4gYnV0IGV4Y2x1ZGluZyAuLlxuICAgIHJtIC1yZiBcIiR7Q0hFQ0tPVVRfRElSfVwiLy5bIS5dKlxuICAgICMgRGVsZXRlIGZpbGVzIGFuZCBkaXJlY3RvcmllcyBzdGFydGluZyB3aXRoIC4uIHBsdXMgYW55IG90aGVyIGNoYXJhY3RlclxuICAgIHJtIC1yZiBcIiR7Q0hFQ0tPVVRfRElSfVwiLy4uPypcbiAgZmlcbn1cblxuaWYgWyBcIiR7UEFSQU1fREVMRVRFX0VYSVNUSU5HfVwiID0gXCJ0cnVlXCIgXSA7IHRoZW5cbiAgY2xlYW5kaXIgfHwgdHJ1ZVxuZmlcblxudGVzdCAteiBcIiR7UEFSQU1fSFRUUF9QUk9YWX1cIiB8fCBleHBvcnQgSFRUUF9QUk9YWT1cIiR7UEFSQU1fSFRUUF9QUk9YWX1cIlxudGVzdCAteiBcIiR7UEFSQU1fSFRUUFNfUFJPWFl9XCIgfHwgZXhwb3J0IEhUVFBTX1BST1hZPVwiJHtQQVJBTV9IVFRQU19QUk9YWX1cIlxudGVzdCAteiBcIiR7UEFSQU1fTk9fUFJPWFl9XCIgfHwgZXhwb3J0IE5PX1BST1hZPVwiJHtQQVJBTV9OT19QUk9YWX1cIlxuXG5naXQgY29uZmlnIC0tZ2xvYmFsIC0tYWRkIHNhZmUuZGlyZWN0b3J5IFwiJHtXT1JLU1BBQ0VfT1VUUFVUX1BBVEh9XCJcbi9rby1hcHAvZ2l0LWluaXQgXFxcbiAgLXVybD1cIiR7UEFSQU1fVVJMfVwiIFxcXG4gIC1yZXZpc2lvbj1cIiR7UEFSQU1fUkVWSVNJT059XCIgXFxcbiAgLXJlZnNwZWM9XCIke1BBUkFNX1JFRlNQRUN9XCIgXFxcbiAgLXBhdGg9XCIke0NIRUNLT1VUX0RJUn1cIiBcXFxuICAtc3NsVmVyaWZ5PVwiJHtQQVJBTV9TU0xfVkVSSUZZfVwiIFxcXG4gIC1zdWJtb2R1bGVzPVwiJHtQQVJBTV9TVUJNT0RVTEVTfVwiIFxcXG4gIC1kZXB0aD1cIiR7UEFSQU1fREVQVEh9XCIgXFxcbiAgLXNwYXJzZUNoZWNrb3V0RGlyZWN0b3JpZXM9XCIke1BBUkFNX1NQQVJTRV9DSEVDS09VVF9ESVJFQ1RPUklFU31cIlxuY2QgXCIke0NIRUNLT1VUX0RJUn1cIlxuUkVTVUxUX1NIQT1cIiQoZ2l0IHJldi1wYXJzZSBIRUFEKVwiXG5FWElUX0NPREU9XCIkP1wiXG5pZiBbIFwiJHtFWElUX0NPREV9XCIgIT0gMCBdIDsgdGhlblxuICBleGl0IFwiJHtFWElUX0NPREV9XCJcbmZpXG5SRVNVTFRfQ09NTUlUVEVSX0RBVEU9XCIkKGdpdCBsb2cgLTEgLS1wcmV0dHk9JWN0KVwiXG5wcmludGYgXCIlc1wiIFwiJHtSRVNVTFRfQ09NTUlUVEVSX0RBVEV9XCIgXHUwMDNlIFwiL3Rla3Rvbi9yZXN1bHRzL2NvbW1pdHRlci1kYXRlXCJcbnByaW50ZiBcIiVzXCIgXCIke1JFU1VMVF9TSEF9XCIgXHUwMDNlIFwiL3Rla3Rvbi9yZXN1bHRzL2NvbW1pdFwiXG5wcmludGYgXCIlc1wiIFwiJHtQQVJBTV9VUkx9XCIgXHUwMDNlIFwiL3Rla3Rvbi9yZXN1bHRzL3VybFwiIiwiYXJndW1lbnRzIjpudWxsLCJlbnZpcm9ubWVudCI6eyJjb250YWluZXIiOiJjbG9uZSIsImltYWdlIjoib2NpOi8vZ2NyLmlvL3Rla3Rvbi1yZWxlYXNlcy9naXRodWIuY29tL3Rla3RvbmNkL3BpcGVsaW5lL2NtZC9naXQtaW5pdEBzaGEyNTY6NTc5YzU2NDczMmM5NmUyYmIzMzdhZWYyMjNjNWQ1MmU1Y2VjMjc3ZjFmNDZiZTBlYWEwZGYwZjI3OTdlMGNiNCJ9LCJhbm5vdGF0aW9ucyI6bnVsbH1dfSwibWV0YWRhdGEiOnsiYnVpbGRTdGFydGVkT24iOiIyMDI0LTA1LTE2VDIwOjU1OjU4WiIsImJ1aWxkRmluaXNoZWRPbiI6IjIwMjQtMDUtMTZUMjA6NTY6MTJaIiwiY29tcGxldGVuZXNzIjp7InBhcmFtZXRlcnMiOmZhbHNlLCJlbnZpcm9ubWVudCI6ZmFsc2UsIm1hdGVyaWFscyI6ZmFsc2V9LCJyZXByb2R1Y2libGUiOmZhbHNlfSwibWF0ZXJpYWxzIjpbeyJ1cmkiOiJvY2k6Ly9nY3IuaW8vdGVrdG9uLXJlbGVhc2VzL2dpdGh1Yi5jb20vdGVrdG9uY2QvcGlwZWxpbmUvY21kL2dpdC1pbml0IiwiZGlnZXN0Ijp7InNoYTI1NiI6IjU3OWM1NjQ3MzJjOTZlMmJiMzM3YWVmMjIzYzVkNTJlNWNlYzI3N2YxZjQ2YmUwZWFhMGRmMGYyNzk3ZTBjYjQifX1dfX0=",
+            "chains.tekton.dev/signature-taskrun-57502433-b65a-44c3-89be-bf23a8664b22": "eyJwYXlsb2FkVHlwZSI6ImFwcGxpY2F0aW9uL3ZuZC5pbi10b3RvK2pzb24iLCJwYXlsb2FkIjoiZXlKZmRIbHdaU0k2SW1oMGRIQnpPaTh2YVc0dGRHOTBieTVwYnk5VGRHRjBaVzFsYm5RdmRqQXVNU0lzSW5CeVpXUnBZMkYwWlZSNWNHVWlPaUpvZEhSd2N6b3ZMM05zYzJFdVpHVjJMM0J5YjNabGJtRnVZMlV2ZGpBdU1pSXNJbk4xWW1wbFkzUWlPbTUxYkd3c0luQnlaV1JwWTJGMFpTSTZleUppZFdsc1pHVnlJanA3SW1sa0lqb2lhSFIwY0hNNkx5OTBaV3QwYjI0dVpHVjJMMk5vWVdsdWN5OTJNaUo5TENKaWRXbHNaRlI1Y0dVaU9pSjBaV3QwYjI0dVpHVjJMM1l4WW1WMFlURXZWR0Z6YTFKMWJpSXNJbWx1ZG05allYUnBiMjRpT25zaVkyOXVabWxuVTI5MWNtTmxJanA3ZlN3aWNHRnlZVzFsZEdWeWN5STZleUpqY25SR2FXeGxUbUZ0WlNJNkltTmhMV0oxYm1Sc1pTNWpjblFpTENKa1pXeGxkR1ZGZUdsemRHbHVaeUk2SW5SeWRXVWlMQ0prWlhCMGFDSTZJakVpTENKbmFYUkpibWwwU1cxaFoyVWlPaUpuWTNJdWFXOHZkR1ZyZEc5dUxYSmxiR1ZoYzJWekwyZHBkR2gxWWk1amIyMHZkR1ZyZEc5dVkyUXZjR2x3Wld4cGJtVXZZMjFrTDJkcGRDMXBibWwwT25Zd0xqUTBMalVpTENKb2RIUndVSEp2ZUhraU9pSWlMQ0pvZEhSd2MxQnliM2g1SWpvaUlpd2libTlRY205NGVTSTZJaUlzSW5KbFpuTndaV01pT2lJaUxDSnlaWFpwYzJsdmJpSTZJbVkyT1dSak9UUTNORE0wTlRKbU1HVm1PREE1TURSaFlqTTFZalEwWW1aaU9EVTVZMk5tTXpFaUxDSnpjR0Z5YzJWRGFHVmphMjkxZEVScGNtVmpkRzl5YVdWeklqb2lJaXdpYzNOc1ZtVnlhV1o1SWpvaWRISjFaU0lzSW5OMVltUnBjbVZqZEc5eWVTSTZJaUlzSW5OMVltMXZaSFZzWlhNaU9pSjBjblZsSWl3aWRYSnNJam9pYUhSMGNITTZMeTluYVhSb2RXSXVZMjl0TDJwdmIzTjBkbVJuTDJsdVozSmxjM010Wkc1ekxXVjRjRzl5ZEMxamIyNTBjbTlzYkdWeUxtZHBkQ0lzSW5WelpYSkliMjFsSWpvaUwyaHZiV1V2WjJsMElpd2lkbVZ5WW05elpTSTZJblJ5ZFdVaWZTd2laVzUyYVhKdmJtMWxiblFpT25zaVlXNXViM1JoZEdsdmJuTWlPbnNpY0dsd1pXeHBibVV1ZEdWcmRHOXVMbVJsZGk5aFptWnBibWwwZVMxaGMzTnBjM1JoYm5RaU9pSmhabVpwYm1sMGVTMWhjM05wYzNSaGJuUXRNbUV4WkRobFltSTNZaUlzSW5CcGNHVnNhVzVsTG5SbGEzUnZiaTVrWlhZdmNtVnNaV0Z6WlNJNklqZzNObUk0TVdVaUxDSjBaV3QwYjI0dVpHVjJMMk5oZEdWbmIzSnBaWE1pT2lKSGFYUWlMQ0owWld0MGIyNHVaR1YyTDJScGMzQnNZWGxPWVcxbElqb2laMmwwSUdOc2IyNWxJaXdpZEdWcmRHOXVMbVJsZGk5d2FYQmxiR2x1WlhNdWJXbHVWbVZ5YzJsdmJpSTZJakF1TXpndU1DSXNJblJsYTNSdmJpNWtaWFl2Y0d4aGRHWnZjbTF6SWpvaWJHbHVkWGd2WVcxa05qUXNiR2x1ZFhndmN6TTVNSGdzYkdsdWRYZ3ZjSEJqTmpSc1pTeHNhVzUxZUM5aGNtMDJOQ0lzSW5SbGEzUnZiaTVrWlhZdmRHRm5jeUk2SW1kcGRDSjlMQ0pzWVdKbGJITWlPbnNpWVhCd0xtdDFZbVZ5Ym1WMFpYTXVhVzh2YldGdVlXZGxaQzFpZVNJNkluUmxhM1J2Ymkxd2FYQmxiR2x1WlhNaUxDSmhjSEF1YTNWaVpYSnVaWFJsY3k1cGJ5OTJaWEp6YVc5dUlqb2lNQzQ1SWl3aVpHRnphR0p2WVhKa0xuUmxhM1J2Ymk1a1pYWXZjbVZ5ZFc1UFppSTZJbWxrWldNdGFXMWhaMlV0WW5WcGJHUnpMWEoxYmkxMGNYcG5iQzF5TFhwcmJHWnRJaXdpWjJWdVpYSmhkR1V1YTNsMlpYSnVieTVwYnk5amJHOXVaUzF6YjNWeVkyVWlPaUlpTENKblpXNWxjbUYwWlM1cmVYWmxjbTV2TG1sdkwzQnZiR2xqZVMxdVlXMWxJam9pYzNsdVl5MTBaV3QwYjI0dGRHRnphM01pTENKblpXNWxjbUYwWlM1cmVYWmxjbTV2TG1sdkwzQnZiR2xqZVMxdVlXMWxjM0JoWTJVaU9pSWlMQ0puWlc1bGNtRjBaUzVyZVhabGNtNXZMbWx2TDNKMWJHVXRibUZ0WlNJNkluTjVibU10ZEdWcmRHOXVMWFJoYzJ0eklpd2laMlZ1WlhKaGRHVXVhM2wyWlhKdWJ5NXBieTl6YjNWeVkyVXRaM0p2ZFhBaU9pSjBaV3QwYjI0dVpHVjJJaXdpWjJWdVpYSmhkR1V1YTNsMlpYSnVieTVwYnk5emIzVnlZMlV0YTJsdVpDSTZJbFJoYzJzaUxDSm5aVzVsY21GMFpTNXJlWFpsY201dkxtbHZMM052ZFhKalpTMXVZVzFsYzNCaFkyVWlPaUowWld0MGIyNHRkR0Z6YTNNaUxDSm5aVzVsY21GMFpTNXJlWFpsY201dkxtbHZMM052ZFhKalpTMTFhV1FpT2lJME5USTFOR1EwTmkwM05XWXdMVFJrTVRNdE9HRmhZeTA0Tm1NeU56QmxNRE0zTm1RaUxDSm5aVzVsY21GMFpTNXJlWFpsY201dkxtbHZMM052ZFhKalpTMTJaWEp6YVc5dUlqb2lkakVpTENKblpXNWxjbUYwWlM1cmVYWmxjbTV2TG1sdkwzUnlhV2RuWlhJdFozSnZkWEFpT2lJaUxDSm5aVzVsY21GMFpTNXJlWFpsY201dkxtbHZMM1J5YVdkblpYSXRhMmx1WkNJNklrNWhiV1Z6Y0dGalpTSXNJbWRsYm1WeVlYUmxMbXQ1ZG1WeWJtOHVhVzh2ZEhKcFoyZGxjaTF1WVcxbGMzQmhZMlVpT2lJaUxDSm5aVzVsY21GMFpTNXJlWFpsY201dkxtbHZMM1J5YVdkblpYSXRkV2xrSWpvaU16WXpNR0V5TWpndE1HWmlNeTAwWkRJM0xUaGpaVFl0TW1Ga016STBNbVkzTmpZM0lpd2laMlZ1WlhKaGRHVXVhM2wyWlhKdWJ5NXBieTkwY21sbloyVnlMWFpsY25OcGIyNGlPaUoyTVNJc0ltdDFjM1J2YldsNlpTNTBiMjlzYTJsMExtWnNkWGhqWkM1cGJ5OXVZVzFsSWpvaWRHVnJkRzl1TFhSaGMydHpMVE1pTENKcmRYTjBiMjFwZW1VdWRHOXZiR3RwZEM1bWJIVjRZMlF1YVc4dmJtRnRaWE53WVdObElqb2labXgxZUMxemVYTjBaVzBpTENKMFpXdDBiMjR1WkdWMkwyMWxiV0psY2s5bUlqb2lkR0Z6YTNNaUxDSjBaV3QwYjI0dVpHVjJMM0JwY0dWc2FXNWxJam9pYVdSbFl5MXBiV0ZuWlMxaWRXbHNaSE1pTENKMFpXdDBiMjR1WkdWMkwzQnBjR1ZzYVc1bFVuVnVJam9pYVdSbFl5MXBiV0ZuWlMxaWRXbHNaSE10Y25WdUxYUnhlbWRzTFhJdGMydzBPWG9pTENKMFpXdDBiMjR1WkdWMkwzQnBjR1ZzYVc1bFZHRnpheUk2SW1abGRHTm9MWE52ZFhKalpTSXNJblJsYTNSdmJpNWtaWFl2ZEdGemF5STZJbWRwZEMxamJHOXVaU0lzSW5SeWFXZG5aWEp6TG5SbGEzUnZiaTVrWlhZdlpYWmxiblJzYVhOMFpXNWxjaUk2SW1sa1pXTXRhVzFoWjJVdFluVnBiR1J6SWl3aWRISnBaMmRsY25NdWRHVnJkRzl1TG1SbGRpOTBjbWxuWjJWeUlqb2laMmwwYUhWaUxXeHBjM1JsYm1WeUlpd2lkSEpwWjJkbGNuTXVkR1ZyZEc5dUxtUmxkaTkwY21sbloyVnljeTFsZG1WdWRHbGtJam9pWWpBNVlUazRNR1V0TW1JMVpDMDBNekl4TFdGbVlXSXRNRFk0WVdNeFpESm1ORFZrSW4xOWZTd2lZblZwYkdSRGIyNW1hV2NpT25zaWMzUmxjSE1pT2x0N0ltVnVkSEo1VUc5cGJuUWlPaUlqSVM5MWMzSXZZbWx1TDJWdWRpQnphRnh1YzJWMElDMWxkVnh1WEc1cFppQmJJRndpSkh0UVFWSkJUVjlXUlZKQ1QxTkZmVndpSUQwZ1hDSjBjblZsWENJZ1hTQTdJSFJvWlc1Y2JpQWdjMlYwSUMxNFhHNW1hVnh1WEc1cFppQmJJRndpSkh0WFQxSkxVMUJCUTBWZlFrRlRTVU5mUVZWVVNGOUVTVkpGUTFSUFVsbGZRazlWVGtSOVhDSWdQU0JjSW5SeWRXVmNJaUJkSURzZ2RHaGxibHh1SUNCamNDQmNJaVI3VjA5U1MxTlFRVU5GWDBKQlUwbERYMEZWVkVoZlJFbFNSVU5VVDFKWlgxQkJWRWg5THk1bmFYUXRZM0psWkdWdWRHbGhiSE5jSWlCY0lpUjdVRUZTUVUxZlZWTkZVbDlJVDAxRmZTOHVaMmwwTFdOeVpXUmxiblJwWVd4elhDSmNiaUFnWTNBZ1hDSWtlMWRQVWt0VFVFRkRSVjlDUVZOSlExOUJWVlJJWDBSSlVrVkRWRTlTV1Y5UVFWUklmUzh1WjJsMFkyOXVabWxuWENJZ1hDSWtlMUJCVWtGTlgxVlRSVkpmU0U5TlJYMHZMbWRwZEdOdmJtWnBaMXdpWEc0Z0lHTm9iVzlrSURRd01DQmNJaVI3VUVGU1FVMWZWVk5GVWw5SVQwMUZmUzh1WjJsMExXTnlaV1JsYm5ScFlXeHpYQ0pjYmlBZ1kyaHRiMlFnTkRBd0lGd2lKSHRRUVZKQlRWOVZVMFZTWDBoUFRVVjlMeTVuYVhSamIyNW1hV2RjSWx4dVptbGNibHh1YVdZZ1d5QmNJaVI3VjA5U1MxTlFRVU5GWDFOVFNGOUVTVkpGUTFSUFVsbGZRazlWVGtSOVhDSWdQU0JjSW5SeWRXVmNJaUJkSURzZ2RHaGxibHh1SUNCamNDQXRVaUJjSWlSN1YwOVNTMU5RUVVORlgxTlRTRjlFU1ZKRlExUlBVbGxmVUVGVVNIMWNJaUJjSWlSN1VFRlNRVTFmVlZORlVsOUlUMDFGZlZ3aUx5NXpjMmhjYmlBZ1kyaHRiMlFnTnpBd0lGd2lKSHRRUVZKQlRWOVZVMFZTWDBoUFRVVjlYQ0l2TG5OemFGeHVJQ0JqYUcxdlpDQXRVaUEwTURBZ1hDSWtlMUJCVWtGTlgxVlRSVkpmU0U5TlJYMWNJaTh1YzNOb0x5cGNibVpwWEc1Y2JtbG1JRnNnWENJa2UxZFBVa3RUVUVGRFJWOVRVMHhmUTBGZlJFbFNSVU5VVDFKWlgwSlBWVTVFZlZ3aUlEMGdYQ0owY25WbFhDSWdYU0E3SUhSb1pXNWNiaUFnSUdWNGNHOXlkQ0JIU1ZSZlUxTk1YME5CVUVGVVNEMWNJaVI3VjA5U1MxTlFRVU5GWDFOVFRGOURRVjlFU1ZKRlExUlBVbGxmVUVGVVNIMWNJbHh1SUNBZ2FXWWdXeUJjSWlSN1VFRlNRVTFmUTFKVVgwWkpURVZPUVUxRmZWd2lJQ0U5SUZ3aVhDSWdYU0E3SUhSb1pXNWNiaUFnSUNBZ0lHVjRjRzl5ZENCSFNWUmZVMU5NWDBOQlNVNUdUejFjSWlSN1YwOVNTMU5RUVVORlgxTlRURjlEUVY5RVNWSkZRMVJQVWxsZlVFRlVTSDB2Skh0UVFWSkJUVjlEVWxSZlJrbE1SVTVCVFVWOVhDSmNiaUFnSUdacFhHNW1hVnh1UTBoRlEwdFBWVlJmUkVsU1BWd2lKSHRYVDFKTFUxQkJRMFZmVDFWVVVGVlVYMUJCVkVoOUx5UjdVRUZTUVUxZlUxVkNSRWxTUlVOVVQxSlpmVndpWEc1Y2JtTnNaV0Z1WkdseUtDa2dlMXh1SUNBaklFUmxiR1YwWlNCaGJua2daWGhwYzNScGJtY2dZMjl1ZEdWdWRITWdiMllnZEdobElISmxjRzhnWkdseVpXTjBiM0o1SUdsbUlHbDBJR1Y0YVhOMGN5NWNiaUFnSTF4dUlDQWpJRmRsSUdSdmJpZDBJR3AxYzNRZ1hDSnliU0F0Y21ZZ0pIdERTRVZEUzA5VlZGOUVTVko5WENJZ1ltVmpZWFZ6WlNBa2UwTklSVU5MVDFWVVgwUkpVbjBnYldsbmFIUWdZbVVnWENJdlhDSmNiaUFnSXlCdmNpQjBhR1VnY205dmRDQnZaaUJoSUcxdmRXNTBaV1FnZG05c2RXMWxMbHh1SUNCcFppQmJJQzFrSUZ3aUpIdERTRVZEUzA5VlZGOUVTVko5WENJZ1hTQTdJSFJvWlc1Y2JpQWdJQ0FqSUVSbGJHVjBaU0J1YjI0dGFHbGtaR1Z1SUdacGJHVnpJR0Z1WkNCa2FYSmxZM1J2Y21sbGMxeHVJQ0FnSUhKdElDMXlaaUJjSWlSN1EwaEZRMHRQVlZSZlJFbFNPajk5WENJdktseHVJQ0FnSUNNZ1JHVnNaWFJsSUdacGJHVnpJR0Z1WkNCa2FYSmxZM1J2Y21sbGN5QnpkR0Z5ZEdsdVp5QjNhWFJvSUM0Z1luVjBJR1Y0WTJ4MVpHbHVaeUF1TGx4dUlDQWdJSEp0SUMxeVppQmNJaVI3UTBoRlEwdFBWVlJmUkVsU2ZWd2lMeTViSVM1ZEtseHVJQ0FnSUNNZ1JHVnNaWFJsSUdacGJHVnpJR0Z1WkNCa2FYSmxZM1J2Y21sbGN5QnpkR0Z5ZEdsdVp5QjNhWFJvSUM0dUlIQnNkWE1nWVc1NUlHOTBhR1Z5SUdOb1lYSmhZM1JsY2x4dUlDQWdJSEp0SUMxeVppQmNJaVI3UTBoRlEwdFBWVlJmUkVsU2ZWd2lMeTR1UHlwY2JpQWdabWxjYm4xY2JseHVhV1lnV3lCY0lpUjdVRUZTUVUxZlJFVk1SVlJGWDBWWVNWTlVTVTVIZlZ3aUlEMGdYQ0owY25WbFhDSWdYU0E3SUhSb1pXNWNiaUFnWTJ4bFlXNWthWElnZkh3Z2RISjFaVnh1Wm1sY2JseHVkR1Z6ZENBdGVpQmNJaVI3VUVGU1FVMWZTRlJVVUY5UVVrOVlXWDFjSWlCOGZDQmxlSEJ2Y25RZ1NGUlVVRjlRVWs5WVdUMWNJaVI3VUVGU1FVMWZTRlJVVUY5UVVrOVlXWDFjSWx4dWRHVnpkQ0F0ZWlCY0lpUjdVRUZTUVUxZlNGUlVVRk5mVUZKUFdGbDlYQ0lnZkh3Z1pYaHdiM0owSUVoVVZGQlRYMUJTVDFoWlBWd2lKSHRRUVZKQlRWOUlWRlJRVTE5UVVrOVlXWDFjSWx4dWRHVnpkQ0F0ZWlCY0lpUjdVRUZTUVUxZlRrOWZVRkpQV0ZsOVhDSWdmSHdnWlhod2IzSjBJRTVQWDFCU1QxaFpQVndpSkh0UVFWSkJUVjlPVDE5UVVrOVlXWDFjSWx4dVhHNW5hWFFnWTI5dVptbG5JQzB0WjJ4dlltRnNJQzB0WVdSa0lITmhabVV1WkdseVpXTjBiM0o1SUZ3aUpIdFhUMUpMVTFCQlEwVmZUMVZVVUZWVVgxQkJWRWg5WENKY2JpOXJieTFoY0hBdloybDBMV2x1YVhRZ1hGeGNiaUFnTFhWeWJEMWNJaVI3VUVGU1FVMWZWVkpNZlZ3aUlGeGNYRzRnSUMxeVpYWnBjMmx2YmoxY0lpUjdVRUZTUVUxZlVrVldTVk5KVDA1OVhDSWdYRnhjYmlBZ0xYSmxabk53WldNOVhDSWtlMUJCVWtGTlgxSkZSbE5RUlVOOVhDSWdYRnhjYmlBZ0xYQmhkR2c5WENJa2UwTklSVU5MVDFWVVgwUkpVbjFjSWlCY1hGeHVJQ0F0YzNOc1ZtVnlhV1o1UFZ3aUpIdFFRVkpCVFY5VFUweGZWa1ZTU1VaWmZWd2lJRnhjWEc0Z0lDMXpkV0p0YjJSMWJHVnpQVndpSkh0UVFWSkJUVjlUVlVKTlQwUlZURVZUZlZ3aUlGeGNYRzRnSUMxa1pYQjBhRDFjSWlSN1VFRlNRVTFmUkVWUVZFaDlYQ0lnWEZ4Y2JpQWdMWE53WVhKelpVTm9aV05yYjNWMFJHbHlaV04wYjNKcFpYTTlYQ0lrZTFCQlVrRk5YMU5RUVZKVFJWOURTRVZEUzA5VlZGOUVTVkpGUTFSUFVrbEZVMzFjSWx4dVkyUWdYQ0lrZTBOSVJVTkxUMVZVWDBSSlVuMWNJbHh1VWtWVFZVeFVYMU5JUVQxY0lpUW9aMmwwSUhKbGRpMXdZWEp6WlNCSVJVRkVLVndpWEc1RldFbFVYME5QUkVVOVhDSWtQMXdpWEc1cFppQmJJRndpSkh0RldFbFVYME5QUkVWOVhDSWdJVDBnTUNCZElEc2dkR2hsYmx4dUlDQmxlR2wwSUZ3aUpIdEZXRWxVWDBOUFJFVjlYQ0pjYm1acFhHNVNSVk5WVEZSZlEwOU5UVWxVVkVWU1gwUkJWRVU5WENJa0tHZHBkQ0JzYjJjZ0xURWdMUzF3Y21WMGRIazlKV04wS1Z3aVhHNXdjbWx1ZEdZZ1hDSWxjMXdpSUZ3aUpIdFNSVk5WVEZSZlEwOU5UVWxVVkVWU1gwUkJWRVY5WENJZ1hIVXdNRE5sSUZ3aUwzUmxhM1J2Ymk5eVpYTjFiSFJ6TDJOdmJXMXBkSFJsY2kxa1lYUmxYQ0pjYm5CeWFXNTBaaUJjSWlWelhDSWdYQ0lrZTFKRlUxVk1WRjlUU0VGOVhDSWdYSFV3TURObElGd2lMM1JsYTNSdmJpOXlaWE4xYkhSekwyTnZiVzFwZEZ3aVhHNXdjbWx1ZEdZZ1hDSWxjMXdpSUZ3aUpIdFFRVkpCVFY5VlVreDlYQ0lnWEhVd01ETmxJRndpTDNSbGEzUnZiaTl5WlhOMWJIUnpMM1Z5YkZ3aUlpd2lZWEpuZFcxbGJuUnpJanB1ZFd4c0xDSmxiblpwY205dWJXVnVkQ0k2ZXlKamIyNTBZV2x1WlhJaU9pSmpiRzl1WlNJc0ltbHRZV2RsSWpvaWIyTnBPaTh2WjJOeUxtbHZMM1JsYTNSdmJpMXlaV3hsWVhObGN5OW5hWFJvZFdJdVkyOXRMM1JsYTNSdmJtTmtMM0JwY0dWc2FXNWxMMk50WkM5bmFYUXRhVzVwZEVCemFHRXlOVFk2TlRjNVl6VTJORGN6TW1NNU5tVXlZbUl6TXpkaFpXWXlNak5qTldRMU1tVTFZMlZqTWpjM1pqRm1ORFppWlRCbFlXRXdaR1l3WmpJM09UZGxNR05pTkNKOUxDSmhibTV2ZEdGMGFXOXVjeUk2Ym5Wc2JIMWRmU3dpYldWMFlXUmhkR0VpT25zaVluVnBiR1JUZEdGeWRHVmtUMjRpT2lJeU1ESTBMVEExTFRFMlZESXdPalUxT2pVNFdpSXNJbUoxYVd4a1JtbHVhWE5vWldSUGJpSTZJakl3TWpRdE1EVXRNVFpVTWpBNk5UWTZNVEphSWl3aVkyOXRjR3hsZEdWdVpYTnpJanA3SW5CaGNtRnRaWFJsY25NaU9tWmhiSE5sTENKbGJuWnBjbTl1YldWdWRDSTZabUZzYzJVc0ltMWhkR1Z5YVdGc2N5STZabUZzYzJWOUxDSnlaWEJ5YjJSMVkybGliR1VpT21aaGJITmxmU3dpYldGMFpYSnBZV3h6SWpwYmV5SjFjbWtpT2lKdlkyazZMeTluWTNJdWFXOHZkR1ZyZEc5dUxYSmxiR1ZoYzJWekwyZHBkR2gxWWk1amIyMHZkR1ZyZEc5dVkyUXZjR2x3Wld4cGJtVXZZMjFrTDJkcGRDMXBibWwwSWl3aVpHbG5aWE4wSWpwN0luTm9ZVEkxTmlJNklqVTNPV00xTmpRM016SmpPVFpsTW1KaU16TTNZV1ZtTWpJell6VmtOVEpsTldObFl6STNOMll4WmpRMlltVXdaV0ZoTUdSbU1HWXlOemszWlRCallqUWlmWDFkZlgwPSIsInNpZ25hdHVyZXMiOlt7ImtleWlkIjoiU0hBMjU2OmRwWUhzb1g3MmRURkFuODNDbk5Fd0JLTHNtV0pEZnc1YU4yQVB0dlplMjAiLCJzaWciOiJNRVFDSUdjc3RkVklmZ1ozYzZvREpHRkhxV2FwSUJGcGpqSW9oTkdaYzlsQUYxYmtBaUJPeHFLUnpCMWo5NHQ3NDluUXlzSXZSVkVLbG90bit5N3VOV2dsUS9uQ213PT0ifV19",
+            "chains.tekton.dev/signed": "true",
+            "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-2a1d8ebb7b",
+            "pipeline.tekton.dev/release": "876b81e",
+            "tekton.dev/categories": "Git",
+            "tekton.dev/displayName": "git clone",
+            "tekton.dev/pipelines.minVersion": "0.38.0",
+            "tekton.dev/platforms": "linux/amd64,linux/s390x,linux/ppc64le,linux/arm64",
+            "tekton.dev/tags": "git"
+        },
+        "creationTimestamp": "2024-05-16T20:55:57Z",
+        "finalizers": [
+            "chains.tekton.dev"
+        ],
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/managed-by": "tekton-pipelines",
+            "app.kubernetes.io/version": "0.9",
+            "dashboard.tekton.dev/rerunOf": "idec-image-builds-run-tqzgl-r-zklfm",
+            "generate.kyverno.io/clone-source": "",
+            "generate.kyverno.io/policy-name": "sync-tekton-tasks",
+            "generate.kyverno.io/policy-namespace": "",
+            "generate.kyverno.io/rule-name": "sync-tekton-tasks",
+            "generate.kyverno.io/source-group": "tekton.dev",
+            "generate.kyverno.io/source-kind": "Task",
+            "generate.kyverno.io/source-namespace": "tekton-tasks",
+            "generate.kyverno.io/source-uid": "45254d46-75f0-4d13-8aac-86c270e0376d",
+            "generate.kyverno.io/source-version": "v1",
+            "generate.kyverno.io/trigger-group": "",
+            "generate.kyverno.io/trigger-kind": "Namespace",
+            "generate.kyverno.io/trigger-namespace": "",
+            "generate.kyverno.io/trigger-uid": "3630a228-0fb3-4d27-8ce6-2ad3242f7667",
+            "generate.kyverno.io/trigger-version": "v1",
+            "kustomize.toolkit.fluxcd.io/name": "tekton-tasks-3",
+            "kustomize.toolkit.fluxcd.io/namespace": "flux-system",
+            "tekton.dev/memberOf": "tasks",
+            "tekton.dev/pipeline": "idec-image-builds",
+            "tekton.dev/pipelineRun": "idec-image-builds-run-tqzgl-r-sl49z",
+            "tekton.dev/pipelineTask": "fetch-source",
+            "tekton.dev/task": "git-clone",
+            "triggers.tekton.dev/eventlistener": "idec-image-builds",
+            "triggers.tekton.dev/trigger": "github-listener",
+            "triggers.tekton.dev/triggers-eventid": "b09a980e-2b5d-4321-afab-068ac1d2f45d"
+        },
+        "name": "idec-image-builds-run-tqzgl-r-sl49z-fetch-source",
+        "namespace": "idec",
+        "ownerReferences": [
+            {
+                "apiVersion": "tekton.dev/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PipelineRun",
+                "name": "idec-image-builds-run-tqzgl-r-sl49z",
+                "uid": "201d033f-e5fc-4f7e-b974-30c7ff062ff7"
+            }
+        ],
+        "resourceVersion": "202979949",
+        "uid": "57502433-b65a-44c3-89be-bf23a8664b22"
+    },
+    "spec": {
+        "params": [
+            {
+                "name": "url",
+                "value": "https://github.com/joostvdg/ingress-dns-export-controller.git"
+            },
+            {
+                "name": "revision",
+                "value": "f69dc94743452f0ef80904ab35b44bfb859ccf31"
+            }
+        ],
+        "serviceAccountName": "default",
+        "taskRef": {
+            "kind": "Task",
+            "name": "git-clone"
+        },
+        "timeout": "1h0m0s",
+        "workspaces": [
+            {
+                "name": "output",
+                "persistentVolumeClaim": {
+                    "claimName": "pvc-8df48f3488"
+                }
+            }
+        ]
+    },
+    "status": {
+        "completionTime": "2024-05-16T20:56:12Z",
+        "conditions": [
+            {
+                "lastTransitionTime": "2024-05-16T20:56:12Z",
+                "message": "All Steps have completed executing",
+                "reason": "Succeeded",
+                "status": "True",
+                "type": "Succeeded"
+            }
+        ],
+        "podName": "idec-image-builds-run-tqzgl-r-sl49z-fetch-source-pod",
+        "provenance": {
+            "featureFlags": {
+                "AwaitSidecarReadiness": true,
+                "Coschedule": "workspaces",
+                "DisableAffinityAssistant": false,
+                "DisableCredsInit": false,
+                "EnableAPIFields": "beta",
+                "EnableCELInWhenExpression": false,
+                "EnableKeepPodOnCancel": false,
+                "EnableProvenanceInStatus": true,
+                "EnableStepActions": false,
+                "EnableTektonOCIBundles": false,
+                "EnforceNonfalsifiability": "none",
+                "MaxResultSize": 4096,
+                "RequireGitSSHSecretKnownHosts": false,
+                "ResultExtractionMethod": "termination-message",
+                "RunningInEnvWithInjectedSidecars": true,
+                "ScopeWhenExpressionsToTask": false,
+                "SendCloudEventsForRuns": false,
+                "SetSecurityContext": false,
+                "VerificationNoMatchPolicy": "ignore"
+            }
+        },
+        "results": [
+            {
+                "name": "commit",
+                "type": "string",
+                "value": "f69dc94743452f0ef80904ab35b44bfb859ccf31"
+            },
+            {
+                "name": "committer-date",
+                "type": "string",
+                "value": "1715724919"
+            },
+            {
+                "name": "url",
+                "type": "string",
+                "value": "https://github.com/joostvdg/ingress-dns-export-controller.git"
+            }
+        ],
+        "startTime": "2024-05-16T20:55:58Z",
+        "steps": [
+            {
+                "container": "step-clone",
+                "imageID": "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init@sha256:579c564732c96e2bb337aef223c5d52e5cec277f1f46be0eaa0df0f2797e0cb4",
+                "name": "clone",
+                "terminated": {
+                    "containerID": "containerd://ee89b59e2c3005fb67e23807c5e278fc8d308169469decb289df90a7cf797376",
+                    "exitCode": 0,
+                    "finishedAt": "2024-05-16T20:56:10Z",
+                    "message": "[{\"key\":\"commit\",\"value\":\"f69dc94743452f0ef80904ab35b44bfb859ccf31\",\"type\":1},{\"key\":\"committer-date\",\"value\":\"1715724919\",\"type\":1},{\"key\":\"url\",\"value\":\"https://github.com/joostvdg/ingress-dns-export-controller.git\",\"type\":1}]",
+                    "reason": "Completed",
+                    "startedAt": "2024-05-16T20:56:10Z"
+                }
+            }
+        ],
+        "taskSpec": {
+            "description": "These Tasks are Git tasks to work with repositories used by other tasks in your Pipeline.\nThe git-clone Task will clone a repo from the provided url into the output Workspace. By default the repo will be cloned into the root of your Workspace. You can clone into a subdirectory by setting this Task's subdirectory param. This Task also supports sparse checkouts. To perform a sparse checkout, pass a list of comma separated directory patterns to this Task's sparseCheckoutDirectories param.",
+            "params": [
+                {
+                    "description": "Repository URL to clone from.",
+                    "name": "url",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "Revision to checkout. (branch, tag, sha, ref, etc...)",
+                    "name": "revision",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "Refspec to fetch before checking out revision.",
+                    "name": "refspec",
+                    "type": "string"
+                },
+                {
+                    "default": "true",
+                    "description": "Initialize and fetch git submodules.",
+                    "name": "submodules",
+                    "type": "string"
+                },
+                {
+                    "default": "1",
+                    "description": "Perform a shallow clone, fetching only the most recent N commits.",
+                    "name": "depth",
+                    "type": "string"
+                },
+                {
+                    "default": "true",
+                    "description": "Set the `http.sslVerify` global git config. Setting this to `false` is not advised unless you are sure that you trust your git remote.",
+                    "name": "sslVerify",
+                    "type": "string"
+                },
+                {
+                    "default": "ca-bundle.crt",
+                    "description": "file name of mounted crt using ssl-ca-directory workspace. default value is ca-bundle.crt.",
+                    "name": "crtFileName",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "Subdirectory inside the `output` Workspace to clone the repo into.",
+                    "name": "subdirectory",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "Define the directory patterns to match or exclude when performing a sparse checkout.",
+                    "name": "sparseCheckoutDirectories",
+                    "type": "string"
+                },
+                {
+                    "default": "true",
+                    "description": "Clean out the contents of the destination directory if it already exists before cloning.",
+                    "name": "deleteExisting",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "HTTP proxy server for non-SSL requests.",
+                    "name": "httpProxy",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "HTTPS proxy server for SSL requests.",
+                    "name": "httpsProxy",
+                    "type": "string"
+                },
+                {
+                    "default": "",
+                    "description": "Opt out of proxying HTTP/HTTPS requests.",
+                    "name": "noProxy",
+                    "type": "string"
+                },
+                {
+                    "default": "true",
+                    "description": "Log the commands that are executed during `git-clone`'s operation.",
+                    "name": "verbose",
+                    "type": "string"
+                },
+                {
+                    "default": "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.44.5",
+                    "description": "The image providing the git-init binary that this Task runs.",
+                    "name": "gitInitImage",
+                    "type": "string"
+                },
+                {
+                    "default": "/home/git",
+                    "description": "Absolute path to the user's home directory.\n",
+                    "name": "userHome",
+                    "type": "string"
+                }
+            ],
+            "results": [
+                {
+                    "description": "The precise commit SHA that was fetched by this Task.",
+                    "name": "commit",
+                    "type": "string"
+                },
+                {
+                    "description": "The precise URL that was fetched by this Task.",
+                    "name": "url",
+                    "type": "string"
+                },
+                {
+                    "description": "The epoch timestamp of the commit that was fetched by this Task.",
+                    "name": "committer-date",
+                    "type": "string"
+                }
+            ],
+            "steps": [
+                {
+                    "computeResources": {},
+                    "env": [
+                        {
+                            "name": "HOME",
+                            "value": "/home/git"
+                        },
+                        {
+                            "name": "PARAM_URL",
+                            "value": "https://github.com/joostvdg/ingress-dns-export-controller.git"
+                        },
+                        {
+                            "name": "PARAM_REVISION",
+                            "value": "f69dc94743452f0ef80904ab35b44bfb859ccf31"
+                        },
+                        {
+                            "name": "PARAM_REFSPEC"
+                        },
+                        {
+                            "name": "PARAM_SUBMODULES",
+                            "value": "true"
+                        },
+                        {
+                            "name": "PARAM_DEPTH",
+                            "value": "1"
+                        },
+                        {
+                            "name": "PARAM_SSL_VERIFY",
+                            "value": "true"
+                        },
+                        {
+                            "name": "PARAM_CRT_FILENAME",
+                            "value": "ca-bundle.crt"
+                        },
+                        {
+                            "name": "PARAM_SUBDIRECTORY"
+                        },
+                        {
+                            "name": "PARAM_DELETE_EXISTING",
+                            "value": "true"
+                        },
+                        {
+                            "name": "PARAM_HTTP_PROXY"
+                        },
+                        {
+                            "name": "PARAM_HTTPS_PROXY"
+                        },
+                        {
+                            "name": "PARAM_NO_PROXY"
+                        },
+                        {
+                            "name": "PARAM_VERBOSE",
+                            "value": "true"
+                        },
+                        {
+                            "name": "PARAM_SPARSE_CHECKOUT_DIRECTORIES"
+                        },
+                        {
+                            "name": "PARAM_USER_HOME",
+                            "value": "/home/git"
+                        },
+                        {
+                            "name": "WORKSPACE_OUTPUT_PATH",
+                            "value": "/workspace/output"
+                        },
+                        {
+                            "name": "WORKSPACE_SSH_DIRECTORY_BOUND",
+                            "value": "false"
+                        },
+                        {
+                            "name": "WORKSPACE_SSH_DIRECTORY_PATH"
+                        },
+                        {
+                            "name": "WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND",
+                            "value": "false"
+                        },
+                        {
+                            "name": "WORKSPACE_BASIC_AUTH_DIRECTORY_PATH"
+                        },
+                        {
+                            "name": "WORKSPACE_SSL_CA_DIRECTORY_BOUND",
+                            "value": "false"
+                        },
+                        {
+                            "name": "WORKSPACE_SSL_CA_DIRECTORY_PATH"
+                        }
+                    ],
+                    "image": "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.44.5",
+                    "name": "clone",
+                    "script": "#!/usr/bin/env sh\nset -eu\n\nif [ \"${PARAM_VERBOSE}\" = \"true\" ] ; then\n  set -x\nfi\n\nif [ \"${WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND}\" = \"true\" ] ; then\n  cp \"${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.git-credentials\" \"${PARAM_USER_HOME}/.git-credentials\"\n  cp \"${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.gitconfig\" \"${PARAM_USER_HOME}/.gitconfig\"\n  chmod 400 \"${PARAM_USER_HOME}/.git-credentials\"\n  chmod 400 \"${PARAM_USER_HOME}/.gitconfig\"\nfi\n\nif [ \"${WORKSPACE_SSH_DIRECTORY_BOUND}\" = \"true\" ] ; then\n  cp -R \"${WORKSPACE_SSH_DIRECTORY_PATH}\" \"${PARAM_USER_HOME}\"/.ssh\n  chmod 700 \"${PARAM_USER_HOME}\"/.ssh\n  chmod -R 400 \"${PARAM_USER_HOME}\"/.ssh/*\nfi\n\nif [ \"${WORKSPACE_SSL_CA_DIRECTORY_BOUND}\" = \"true\" ] ; then\n   export GIT_SSL_CAPATH=\"${WORKSPACE_SSL_CA_DIRECTORY_PATH}\"\n   if [ \"${PARAM_CRT_FILENAME}\" != \"\" ] ; then\n      export GIT_SSL_CAINFO=\"${WORKSPACE_SSL_CA_DIRECTORY_PATH}/${PARAM_CRT_FILENAME}\"\n   fi\nfi\nCHECKOUT_DIR=\"${WORKSPACE_OUTPUT_PATH}/${PARAM_SUBDIRECTORY}\"\n\ncleandir() {\n  # Delete any existing contents of the repo directory if it exists.\n  #\n  # We don't just \"rm -rf ${CHECKOUT_DIR}\" because ${CHECKOUT_DIR} might be \"/\"\n  # or the root of a mounted volume.\n  if [ -d \"${CHECKOUT_DIR}\" ] ; then\n    # Delete non-hidden files and directories\n    rm -rf \"${CHECKOUT_DIR:?}\"/*\n    # Delete files and directories starting with . but excluding ..\n    rm -rf \"${CHECKOUT_DIR}\"/.[!.]*\n    # Delete files and directories starting with .. plus any other character\n    rm -rf \"${CHECKOUT_DIR}\"/..?*\n  fi\n}\n\nif [ \"${PARAM_DELETE_EXISTING}\" = \"true\" ] ; then\n  cleandir || true\nfi\n\ntest -z \"${PARAM_HTTP_PROXY}\" || export HTTP_PROXY=\"${PARAM_HTTP_PROXY}\"\ntest -z \"${PARAM_HTTPS_PROXY}\" || export HTTPS_PROXY=\"${PARAM_HTTPS_PROXY}\"\ntest -z \"${PARAM_NO_PROXY}\" || export NO_PROXY=\"${PARAM_NO_PROXY}\"\n\ngit config --global --add safe.directory \"${WORKSPACE_OUTPUT_PATH}\"\n/ko-app/git-init \\\n  -url=\"${PARAM_URL}\" \\\n  -revision=\"${PARAM_REVISION}\" \\\n  -refspec=\"${PARAM_REFSPEC}\" \\\n  -path=\"${CHECKOUT_DIR}\" \\\n  -sslVerify=\"${PARAM_SSL_VERIFY}\" \\\n  -submodules=\"${PARAM_SUBMODULES}\" \\\n  -depth=\"${PARAM_DEPTH}\" \\\n  -sparseCheckoutDirectories=\"${PARAM_SPARSE_CHECKOUT_DIRECTORIES}\"\ncd \"${CHECKOUT_DIR}\"\nRESULT_SHA=\"$(git rev-parse HEAD)\"\nEXIT_CODE=\"$?\"\nif [ \"${EXIT_CODE}\" != 0 ] ; then\n  exit \"${EXIT_CODE}\"\nfi\nRESULT_COMMITTER_DATE=\"$(git log -1 --pretty=%ct)\"\nprintf \"%s\" \"${RESULT_COMMITTER_DATE}\" \u003e \"/tekton/results/committer-date\"\nprintf \"%s\" \"${RESULT_SHA}\" \u003e \"/tekton/results/commit\"\nprintf \"%s\" \"${PARAM_URL}\" \u003e \"/tekton/results/url\"",
+                    "securityContext": {
+                        "runAsNonRoot": true,
+                        "runAsUser": 65532
+                    }
+                }
+            ],
+            "workspaces": [
+                {
+                    "description": "The git repo will be cloned onto the volume backing this Workspace.",
+                    "name": "output"
+                },
+                {
+                    "description": "A .ssh directory with private key, known_hosts, config, etc. Copied to\nthe user's home before git commands are executed. Used to authenticate\nwith the git remote when performing the clone. Binding a Secret to this\nWorkspace is strongly recommended over other volume types.\n",
+                    "name": "ssh-directory",
+                    "optional": true
+                },
+                {
+                    "description": "A Workspace containing a .gitconfig and .git-credentials file. These\nwill be copied to the user's home before any git commands are run. Any\nother files in this Workspace are ignored. It is strongly recommended\nto use ssh-directory over basic-auth whenever possible and to bind a\nSecret to this Workspace over other volume types.\n",
+                    "name": "basic-auth",
+                    "optional": true
+                },
+                {
+                    "description": "A workspace containing CA certificates, this will be used by Git to\nverify the peer with when fetching or pushing over HTTPS.\n",
+                    "name": "ssl-ca-directory",
+                    "optional": true
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,108 @@
+{
+  "duration": "PT2M30S",
+  "identifier": "e7e4911b-0328-4d5b-8106-c96ee0be085c",
+  "instantOfCompletion": "2024-05-16T20:58:27Z",
+  "instantOfStart": "2024-05-16T20:55:57Z",
+  "name": "idec-image-builds-run-tqzgl-r-sl49z",
+  "pipelineIdentifier": "pipelineId",
+  "results": null,
+  "stages": [
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-fetch-source",
+      "name": "fetch-source",
+      "order": 0,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-metadata-collection",
+      "name": "metadata-collection",
+      "order": 1,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-git-next-tag",
+      "name": "git-next-tag",
+      "order": 2,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-maven-run",
+      "name": "maven-run",
+      "order": 3,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-create-and-push-git-tag",
+      "name": "create-and-push-git-tag",
+      "order": 4,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-kaniko-arm64",
+      "name": "kaniko-arm64",
+      "order": 5,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    },
+    {
+      "duration": "PT0S",
+      "identifier": "idec-image-builds-run-tqzgl-r-sl49z-publish-helm-chart",
+      "name": "publish-helm-chart",
+      "order": 6,
+      "status": {
+        "executionStatus": "SUCCEEDED",
+        "explanation": "N/A",
+        "success": true
+      },
+      "steps": []
+    }
+  ],
+  "status": {
+    "executionStatus": "SUCCEEDED",
+    "explanation": "Completed - Tasks Completed: 7 (Failed: 0, Cancelled 0), Skipped: 4",
+    "success": true
+  },
+  "trigger": {
+    "eventId": "b09a980e-2b5d-4321-afab-068ac1d2f45d",
+    "eventListener": "idec-image-builds",
+    "rerun": true,
+    "rerunOf": "idec-image-builds-run-tqzgl-r-zklfm",
+    "trigger": "github-listener",
+    "triggerType": "GitHub"
+  }
+}
