@@ -2,6 +2,7 @@
 package net.joostvdg.tektonvisualizer.harvester.parser;
 
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
+import java.util.List;
 import java.util.Optional;
 import net.joostvdg.tektonvisualizer.model.TektonResourceType;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,10 @@ public class TaskRunReferenceParser implements TektonResourceParser {
     // This parser should parse the TaskRun reference from a PipelineRun's Status
     // And it should return PipelineStages which contain PipelineSteps if applicable
     return Optional.empty();
+  }
+
+  @Override
+  public List<TektonResourceType> parseList(DynamicKubernetesObject resource) {
+    return List.of();
   }
 }
