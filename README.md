@@ -15,13 +15,19 @@ Project for visualizing Tekton Pipelines
     * show PipelineStatus
     * show PipelineStatus Results
 * have a watch on the Tekton resources
-    * and send the data to a backend via RabbitMQ   
+    * and send the data to a backend via RabbitMQ
+* map multiple PipelineStatus to a SupplyChain
+    * e.g., when we have multiple PipelineStatus for the same code_source
+* add OTEL so we can trace all steps
 * figure out how we can trigger related pipelines (e.g., image scan) and link them to the same Supply Chain/System
     * can we trigger a pipeline with CloudEvents?
       * what are the Labels we get when it is triggered by a CloudEvent
       * can we emit a CloudEvent when a pipeline is done?
           * e.g., when we have a version, or when we publish an image
     * can we have Harbor emit a CloudEvent when a new image is pushed?
+* create first version of the Notifier backend
+    * store notification settings
+    * limit to Slack and Discord?
 
 ### Messaging
 
