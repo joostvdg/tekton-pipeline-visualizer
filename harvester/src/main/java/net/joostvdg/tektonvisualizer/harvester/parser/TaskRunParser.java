@@ -3,11 +3,9 @@ package net.joostvdg.tektonvisualizer.harvester.parser;
 
 import com.google.gson.JsonElement;
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
-
 import net.joostvdg.tektonvisualizer.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -5,13 +5,12 @@ import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesApi;
 import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
 import io.kubernetes.client.util.generic.options.ListOptions;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
-
+import net.joostvdg.tektonvisualizer.harvester.messaging.QueueSender;
 import net.joostvdg.tektonvisualizer.harvester.parser.TaskRunParser;
 import net.joostvdg.tektonvisualizer.harvester.parser.TektonResourceParser;
 import net.joostvdg.tektonvisualizer.model.PipelineStage;
@@ -29,15 +28,22 @@ public class PipelineStatusImpl implements PipelineStatusService {
 
   private final TektonResourceParser pipelineStatusParser;
 
+  private final QueueSender queueSender;
+
   private final Logger logger = LoggerFactory.getLogger(PipelineStatusImpl.class);
   private final TaskRunParser taskRunParser;
 
   private HashMap<String, PipelineStatus> knownPipelineStatuses;
 
-  public PipelineStatusImpl(ApiClient apiClient, TektonResourceParser pipelineStatusParser, TaskRunParser taskRunParser) {
+  public PipelineStatusImpl(
+      ApiClient apiClient,
+      TektonResourceParser pipelineStatusParser,
+      TaskRunParser taskRunParser,
+      QueueSender queueSender) {
     this.apiClient = apiClient;
     this.pipelineStatusParser = pipelineStatusParser;
     this.taskRunParser = taskRunParser;
+    this.queueSender = queueSender;
   }
 
   @PostConstruct
@@ -86,7 +92,7 @@ public class PipelineStatusImpl implements PipelineStatusService {
         continue;
       }
       var pipelineStatusObj = (PipelineStatus) pipelineStatus.get();
-      knownPipelineStatuses.put(runName,pipelineStatusObj);
+      knownPipelineStatuses.put(runName, pipelineStatusObj);
 
       // TODO: we can collect the order via the status.childReferences
       List<PipelineStage> pipelineStages = new ArrayList<>();
@@ -94,17 +100,23 @@ public class PipelineStatusImpl implements PipelineStatusService {
       for (var taskRun : taskRuns) {
         var pipelineStage = taskRunParser.parse(taskRun);
         if (pipelineStage.isEmpty()) {
-            logger.warn("Could not parse TaskRun: {}", taskRun.getMetadata().getName());
-            continue;
+          logger.warn("Could not parse TaskRun: {}", taskRun.getMetadata().getName());
+          continue;
         }
         pipelineStages.add((PipelineStage) pipelineStage.get());
       }
       pipelineStatusObj.stages().addAll(pipelineStages);
     }
+
+    logger.info("Sending Pipeline Statuses to the queue.");
+    PipelineStatus pipelineStatusToSend =
+        knownPipelineStatuses.values().stream().findFirst().orElseThrow();
+    queueSender.sendPipelineStatus(pipelineStatusToSend);
   }
 
   public List<DynamicKubernetesObject> getTaskRunsForPipelineRun(String pipelineRunName) {
-    DynamicKubernetesApi dynamicApi = new DynamicKubernetesApi("tekton.dev", "v1", "taskruns", apiClient);
+    DynamicKubernetesApi dynamicApi =
+        new DynamicKubernetesApi("tekton.dev", "v1", "taskruns", apiClient);
     ListOptions listOptions = new ListOptions();
     listOptions.setLabelSelector("tekton.dev/pipelineRun=" + pipelineRunName);
     // Attempt to limit fields retrieved. Note: This might not work as expected for nested fields.
@@ -116,7 +128,7 @@ public class PipelineStatusImpl implements PipelineStatusService {
         return taskRuns.getItems();
       }
     } catch (Exception e) {
-        logger.error("Could not retrieve TaskRuns for PipelineRun: {}", pipelineRunName, e);
+      logger.error("Could not retrieve TaskRuns for PipelineRun: {}", pipelineRunName, e);
     }
     return List.of();
   }

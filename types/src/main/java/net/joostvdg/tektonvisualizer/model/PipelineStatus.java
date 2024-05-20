@@ -112,4 +112,33 @@ public record PipelineStatus(
           trigger); // Include the trigger in the constructor call
     }
   }
+
+  @Override
+  public String toString() {
+    return "PipelineStatus{"
+        + "identifier='"
+        + identifier
+        + '\''
+        + ", pipelineIdentifier='"
+        + pipelineIdentifier
+        + '\''
+        + ", name='"
+        + name
+        + '\''
+        + ", results="
+        + results
+        + ", stages="
+        + stages
+        + ", status="
+        + status
+        + ", instantOfCompletion="
+        + instantOfCompletion
+        + ", instantOfStart="
+        + instantOfStart
+        + ", duration="
+        + duration
+        + ", trigger="
+        + trigger
+        + '}';
+  }
 }

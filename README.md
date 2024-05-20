@@ -51,7 +51,7 @@ Support at least these messaging systems:
 * Backend 2 stores the retrieved data
 * Frontend visualizes
 
-## backend 1
+## backend 1 - Tekton Harvester
 
 * Java Spring Boot
 * Scrapes Kubernetes for data
@@ -61,7 +61,7 @@ Support at least these messaging systems:
  * ElasticSearch, or alternative?
  * Write access
 
-## Backend 2
+## Backend 2 - Sensemaker
 
 * Java Spring Boot
 * Postgresql for storing accounts
@@ -71,17 +71,51 @@ Support at least these messaging systems:
 * Receive data via RabbitMQ
 * Expose data via GraphQL and OAuth
 * Read access to log storage
+* connect the dots of the harvester data to internal model
+    * emit CloudEvent when data is processed
+    * e.g., compare current run to previous run of same pipeline/system
+    * do we send it via RabbitMQ? Or Kafka?
 
-## Backend 3
+## Backend 3 - Notifier
 
 * Notification configuration
 * SQLlite?
 * Export via GraphQL
-* Can receive notification information via RabbitMQ
- * propogates it based on account settings
+* Can receive notification information via RabbitMQ/Kafka?
+    * propagates it based on account settings
+    * e.g., Email, Slack, etc
+    * when status changes, when a new pipeline is triggered, etc
+    * map the data to the internal model
+    * e.g., Team/User/Role/NotificationType
+
 
 ## Frontend
 
 * Vaadin
-* Retrieve data via GraphQL
+* Retrieve data via GraphQL (from Backend 2 and 3)
 * Render data based on user account / role /org
+
+## Links
+
+* RabbitMQ
+    * https://spring.academy/guides/messaging-with-rabbitmq 
+    * https://spring.io/guides/gs/messaging-rabbitmq
+    * https://www.rabbitmq.com/tutorials/tutorial-one-spring-amqp.html
+    * https://docs.spring.io/spring-boot/reference/messaging/amqp.html
+    * https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/
+* Tekton
+    * https://tekton.dev/docs/pipelines/pipelines/
+    * https://github.com/tektoncd/results
+* Serialization
+    * https://snyk.io/blog/new-java-17-features-for-improved-security-and-serialization/
+    * https://www.baeldung.com/java-serialization
+    * https://www.baeldung.com/java-apache-avro
+    * https://avro.apache.org/docs/1.11.1/getting-started-java/
+    * https://www.baeldung.com/fastjson
+* Database
+    * https://documentation.red-gate.com/flyway/quickstart-how-flyway-works/quickstart-guides/quickstart-maven
+    * https://www.baeldung.com/database-migrations-with-flyway
+    * https://www.jooq.org/doc/latest/manual/code-generation/codegen-maven/
+    * https://www.sivalabs.in/spring-boot-jooq-tutorial-getting-started/
+    * https://github.com/sivaprasadreddy/spring-boot-jooq-demo
+    * https://github.com/joostvdg/keep-watching/blob/master/backend/src/main/java/com/github/joostvdg/keepwatching/service/impl/MovieServiceImpl.java

@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Locale;
 import java.util.Optional;
-
 import net.joostvdg.tektonvisualizer.harvester.parser.TaskRunParser;
 import net.joostvdg.tektonvisualizer.model.TektonResourceType;
 import org.junit.jupiter.api.Test;
@@ -24,8 +23,7 @@ public class TaskRunParserTest {
   private static final String RESOURCE_PATH = "src/test/resources";
   private static final String TEKTON_TASK_RUN_JSON = "tekton-task-run.json";
 
-    @Autowired
-    private TaskRunParser taskRunParser;
+  @Autowired private TaskRunParser taskRunParser;
 
   @Test
   void testParse() {
@@ -35,9 +33,8 @@ public class TaskRunParserTest {
     assertEquals(expectedName, loadedTaskRun.getMetadata().getName());
 
     // TODO finish test
-     Optional<TektonResourceType> pipelineStagesOpt = taskRunParser.parse(loadedTaskRun);
-     assertTrue(pipelineStagesOpt.isPresent());
-
+    Optional<TektonResourceType> pipelineStagesOpt = taskRunParser.parse(loadedTaskRun);
+    assertTrue(pipelineStagesOpt.isPresent());
   }
 
   private DynamicKubernetesObject loadTaskRun() {

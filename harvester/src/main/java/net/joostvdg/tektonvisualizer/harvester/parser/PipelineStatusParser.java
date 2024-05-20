@@ -6,7 +6,6 @@ import io.kubernetes.client.util.generic.dynamic.DynamicKubernetesObject;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-
 import net.joostvdg.tektonvisualizer.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,15 +88,25 @@ public class PipelineStatusParser implements TektonResourceParser {
 
     // TODO also create PipelineStage for each Skipped Task
 
-    String rerunOf = pipelineRun.getMetadata().getLabels().getOrDefault("dashboard.tekton.dev/rerunOf", "");
-    String eventListener = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/eventlistener", "");
-    String trigger = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/trigger", "");
-    String triggersEventId = pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/triggers-eventid", "");
+    String rerunOf =
+        pipelineRun.getMetadata().getLabels().getOrDefault("dashboard.tekton.dev/rerunOf", "");
+    String eventListener =
+        pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/eventlistener", "");
+    String trigger =
+        pipelineRun.getMetadata().getLabels().getOrDefault("triggers.tekton.dev/trigger", "");
+    String triggersEventId =
+        pipelineRun
+            .getMetadata()
+            .getLabels()
+            .getOrDefault("triggers.tekton.dev/triggers-eventid", "");
     boolean rerun = !rerunOf.isEmpty();
 
     // Assuming TriggerInfo is a class that holds the trigger information
-    // TriggerInfo triggerInfo = new TriggerInfo(rerunOf, pipeline, eventListener, trigger, triggersEventId);
-    PipelineTrigger triggerInfo = new PipelineTrigger(TriggerType.GitHub, trigger, triggersEventId, rerun, rerunOf, eventListener);
+    // TriggerInfo triggerInfo = new TriggerInfo(rerunOf, pipeline, eventListener, trigger,
+    // triggersEventId);
+    PipelineTrigger triggerInfo =
+        new PipelineTrigger(
+            TriggerType.GitHub, trigger, triggersEventId, rerun, rerunOf, eventListener);
     logger.debug("Collected Trigger Information: {}", triggerInfo);
 
     PipelineStatus pipelineStatus =
