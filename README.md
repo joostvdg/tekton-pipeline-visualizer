@@ -4,14 +4,24 @@ Project for visualizing Tekton Pipelines
 
 ## TODO
 
+* collect and store code_source from the PipelineStatus's Results
+* map PipelineStatus to SupplyChain
+    * do we need to use a Pipeline?
+    * or do we match on code_source + path?
+* expose SupplyChain via GraphQL
+* expose PipelineStatus via GraphQL
+* create Vaadin frontend
+    * show SupplyChain
+    * show PipelineStatus
+    * show PipelineStatus Results
 * have a watch on the Tekton resources
     * and send the data to a backend via RabbitMQ   
 * figure out how we can trigger related pipelines (e.g., image scan) and link them to the same Supply Chain/System
-* can we trigger a pipeline with CloudEvents?
-* what are the Labels we get when it is triggered by a CloudEvent
-* can we emit a CloudEvent when a pipeline is done?
-    * e.g., when we have a version, or when we publish an image
-* can we have Harbor emit a CloudEvent when a new image is pushed?
+    * can we trigger a pipeline with CloudEvents?
+      * what are the Labels we get when it is triggered by a CloudEvent
+      * can we emit a CloudEvent when a pipeline is done?
+          * e.g., when we have a version, or when we publish an image
+    * can we have Harbor emit a CloudEvent when a new image is pushed?
 
 ### Messaging
 
