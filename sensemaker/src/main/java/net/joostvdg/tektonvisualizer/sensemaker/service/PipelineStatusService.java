@@ -1,13 +1,12 @@
 /* (C)2024 */
 package net.joostvdg.tektonvisualizer.sensemaker.service;
 
-import net.joostvdg.tektonvisualizer.model.PipelineStatus;
-
 import java.util.List;
+import net.joostvdg.tektonvisualizer.model.PipelineStatus;
 
 public interface PipelineStatusService {
 
-  boolean newPipelineStatus(PipelineStatus pipelineStatus);
+  Integer newPipelineStatus(PipelineStatus pipelineStatus);
 
   boolean pipelineStatusExists(String pipelineName);
 
