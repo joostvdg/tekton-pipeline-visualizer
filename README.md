@@ -135,3 +135,6 @@ Support at least these messaging systems:
     * https://www.sivalabs.in/spring-boot-jooq-tutorial-getting-started/
     * https://github.com/sivaprasadreddy/spring-boot-jooq-demo
     * https://github.com/joostvdg/keep-watching/blob/master/backend/src/main/java/com/github/joostvdg/keepwatching/service/impl/MovieServiceImpl.java
+    * https://maciejwalkowiak.com/blog/testcontainers-spring-boot-setup/
+* Testing Spring
+    * https://www.baeldung.com/junit-5-extensions
