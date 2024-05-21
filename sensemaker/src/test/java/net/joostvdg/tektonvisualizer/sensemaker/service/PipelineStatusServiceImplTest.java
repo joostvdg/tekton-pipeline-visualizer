@@ -6,23 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
-
 import net.joostvdg.tektonvisualizer.model.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest
 @Transactional
 class PipelineStatusServiceImplTest {
-
-  static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine");
-
-  static {
-    postgres.start();
-  }
 
   @Autowired private PipelineStatusServiceImpl pipelineStatusServiceImpl;
 
@@ -41,7 +33,9 @@ class PipelineStatusServiceImplTest {
   @Test
   void shouldInsertNewPipelineStatus() {
     var status = new Status(true, "Success", ExecutionStatus.SUCCEEDED);
-    var trigger = new PipelineTrigger(TriggerType.GitHub, "Github Webhook Listener", "12345", false, "", "myListener");
+    var trigger =
+        new PipelineTrigger(
+            TriggerType.GitHub, "Github Webhook Listener", "12345", false, "", "myListener");
     var pipelineStatus =
         new PipelineStatus.Builder()
             .name("New Pipeline Status")
@@ -55,11 +49,9 @@ class PipelineStatusServiceImplTest {
             .build();
     Integer newId = pipelineStatusServiceImpl.newPipelineStatus(pipelineStatus);
     assertNotNull(newId);
-    assertTrue( newId > 0);
+    assertTrue(newId > 0);
 
     var numOfPipelineStatuses = pipelineStatusServiceImpl.getAllPipelineStatuses().size();
     assertEquals(2, numOfPipelineStatuses);
   }
-  
-
 }
