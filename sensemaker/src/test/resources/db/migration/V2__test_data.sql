@@ -92,20 +92,24 @@ INSERT INTO pipeline_trigger (
 
 -- insert a code source
 INSERT INTO code_source (
+    source_name,
     source_type,
     source_url,
     sub_path
 ) VALUES (
+    'Tekton Pipeline Visualizer - Sensemaker',
     'Github',
     'https://github.com/joostvdg/tekton-pipeline-visualizer.git',
     'sensemaker'
 );
 
 INSERT INTO code_source (
+    source_name,
     source_type,
     source_url,
     sub_path
 ) VALUES (
+    'Tekton Pipeline Visualizer - Harvester',
     'Github',
     'https://github.com/joostvdg/tekton-pipeline-visualizer.git',
     'harvester'
@@ -134,11 +138,11 @@ INSERT INTO supply_chain_code_source (
     2
 );
 
--- insert a pipeline status supply chain
-INSERT INTO pipeline_status_supply_chain (
-    pipeline_status_id,
-    supply_chain_id
-) VALUES (
-    1,
-    1
-);
+-- -- insert a pipeline status supply chain
+-- INSERT INTO pipeline_status_supply_chain (
+--     pipeline_status_id,
+--     supply_chain_id
+-- ) VALUES (
+--     1,
+--     1
+-- );

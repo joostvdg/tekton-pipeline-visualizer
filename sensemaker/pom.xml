@@ -34,7 +34,7 @@
 		<flyway.version>10.13.0</flyway.version>
 		<postgres.version>42.6.2</postgres.version>
 
-		<types.version>0.5.1</types.version>
+		<types.version>0.5.2</types.version>
 	</properties>
 
 	<dependencies>

@@ -45,6 +45,7 @@ CREATE TABLE pipeline_trigger (
 -- Create code_source Table
 CREATE TABLE code_source (
     id SERIAL PRIMARY KEY,
+    source_name VARCHAR(255) NOT NULL,
     source_type VARCHAR(255) NOT NULL,
     source_url VARCHAR(255) NOT NULL,
     sub_path VARCHAR(255)
@@ -76,3 +77,4 @@ CREATE TABLE pipeline_status_supply_chain (
 
 -- Unique Index on Pipeline Status Name
 CREATE UNIQUE INDEX pipeline_status_name_index ON pipeline_status (name);
+CREATE UNIQUE INDEX url_subpath_index ON CODE_SOURCE (SOURCE_URL, SUB_PATH);

@@ -4,8 +4,11 @@
 package net.joostvdg.tektonvisualizer.model.tables;
 
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+import net.joostvdg.tektonvisualizer.model.Indexes;
 import net.joostvdg.tektonvisualizer.model.Keys;
 import net.joostvdg.tektonvisualizer.model.Public;
 import net.joostvdg.tektonvisualizer.model.tables.SupplyChain.SupplyChainPath;
@@ -16,6 +19,7 @@ import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.InverseForeignKey;
 import org.jooq.Name;
 import org.jooq.Path;
@@ -60,6 +64,11 @@ public class CodeSource extends TableImpl<CodeSourceRecord> {
      * The column <code>public.code_source.id</code>.
      */
     public final TableField<CodeSourceRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
+    /**
+     * The column <code>public.code_source.source_name</code>.
+     */
+    public final TableField<CodeSourceRecord, String> SOURCE_NAME = createField(DSL.name("source_name"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
      * The column <code>public.code_source.source_type</code>.
@@ -141,6 +150,11 @@ public class CodeSource extends TableImpl<CodeSourceRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.URL_SUBPATH_INDEX);
     }
 
     @Override

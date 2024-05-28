@@ -33,45 +33,59 @@ public class CodeSourceRecord extends UpdatableRecordImpl<CodeSourceRecord> {
     }
 
     /**
+     * Setter for <code>public.code_source.source_name</code>.
+     */
+    public void setSourceName(String value) {
+        set(1, value);
+    }
+
+    /**
+     * Getter for <code>public.code_source.source_name</code>.
+     */
+    public String getSourceName() {
+        return (String) get(1);
+    }
+
+    /**
      * Setter for <code>public.code_source.source_type</code>.
      */
     public void setSourceType(String value) {
-        set(1, value);
+        set(2, value);
     }
 
     /**
      * Getter for <code>public.code_source.source_type</code>.
      */
     public String getSourceType() {
-        return (String) get(1);
+        return (String) get(2);
     }
 
     /**
      * Setter for <code>public.code_source.source_url</code>.
      */
     public void setSourceUrl(String value) {
-        set(2, value);
+        set(3, value);
     }
 
     /**
      * Getter for <code>public.code_source.source_url</code>.
      */
     public String getSourceUrl() {
-        return (String) get(2);
+        return (String) get(3);
     }
 
     /**
      * Setter for <code>public.code_source.sub_path</code>.
      */
     public void setSubPath(String value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
      * Getter for <code>public.code_source.sub_path</code>.
      */
     public String getSubPath() {
-        return (String) get(3);
+        return (String) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -97,10 +111,11 @@ public class CodeSourceRecord extends UpdatableRecordImpl<CodeSourceRecord> {
     /**
      * Create a detached, initialised CodeSourceRecord
      */
-    public CodeSourceRecord(Integer id, String sourceType, String sourceUrl, String subPath) {
+    public CodeSourceRecord(Integer id, String sourceName, String sourceType, String sourceUrl, String subPath) {
         super(CodeSource.CODE_SOURCE);
 
         setId(id);
+        setSourceName(sourceName);
         setSourceType(sourceType);
         setSourceUrl(sourceUrl);
         setSubPath(subPath);
