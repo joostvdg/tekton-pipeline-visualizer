@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>net.joostvdg.tekton-visualizer</groupId>
-	<artifactId>harvester</artifactId>
+	<artifactId>tekton-harvester</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Harvester</name>
 	<description>Kubernetes client for retrieving Tekton related data, process it, and push it to the next component</description>
