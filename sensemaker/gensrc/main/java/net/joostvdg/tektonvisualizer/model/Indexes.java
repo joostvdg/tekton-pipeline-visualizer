@@ -7,6 +7,7 @@ package net.joostvdg.tektonvisualizer.model;
 import net.joostvdg.tektonvisualizer.model.tables.CodeSource;
 import net.joostvdg.tektonvisualizer.model.tables.FlywaySchemaHistory;
 import net.joostvdg.tektonvisualizer.model.tables.PipelineStatus;
+import net.joostvdg.tektonvisualizer.model.tables.SupplyChain;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -24,7 +25,9 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index CODE_SOURCE_NAME = Internal.createIndex(DSL.name("code_source_name"), CodeSource.CODE_SOURCE, new OrderField[] { CodeSource.CODE_SOURCE.SOURCE_NAME }, true);
     public static final Index FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex(DSL.name("flyway_schema_history_s_idx"), FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);
     public static final Index PIPELINE_STATUS_NAME_INDEX = Internal.createIndex(DSL.name("pipeline_status_name_index"), PipelineStatus.PIPELINE_STATUS, new OrderField[] { PipelineStatus.PIPELINE_STATUS.NAME }, true);
+    public static final Index SUPPLY_CHAIN_NAME = Internal.createIndex(DSL.name("supply_chain_name"), SupplyChain.SUPPLY_CHAIN, new OrderField[] { SupplyChain.SUPPLY_CHAIN.NAME }, true);
     public static final Index URL_SUBPATH_INDEX = Internal.createIndex(DSL.name("url_subpath_index"), CodeSource.CODE_SOURCE, new OrderField[] { CodeSource.CODE_SOURCE.SOURCE_URL, CodeSource.CODE_SOURCE.SUB_PATH }, true);
 }

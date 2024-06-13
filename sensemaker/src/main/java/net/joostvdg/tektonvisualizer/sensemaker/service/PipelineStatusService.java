@@ -3,10 +3,11 @@ package net.joostvdg.tektonvisualizer.sensemaker.service;
 
 import java.util.List;
 import net.joostvdg.tektonvisualizer.model.PipelineStatus;
+import net.joostvdg.tektonvisualizer.sensemaker.db.InsertResult;
 
 public interface PipelineStatusService {
 
-  Integer newPipelineStatus(PipelineStatus pipelineStatus);
+  InsertResult newPipelineStatus(PipelineStatus pipelineStatus);
 
   boolean pipelineStatusExists(String pipelineName);
 

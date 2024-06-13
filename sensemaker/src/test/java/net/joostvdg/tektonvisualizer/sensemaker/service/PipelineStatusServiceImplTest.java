@@ -47,7 +47,11 @@ class PipelineStatusServiceImplTest {
             .status(status)
             .trigger(trigger)
             .build();
-    Integer newId = pipelineStatusServiceImpl.newPipelineStatus(pipelineStatus);
+    var result = pipelineStatusServiceImpl.newPipelineStatus(pipelineStatus);
+    Integer newId = 0;
+    if (result.newRecordId().isPresent()) {
+      newId = result.newRecordId().get();
+    }
     assertNotNull(newId);
     assertTrue(newId > 0);
 

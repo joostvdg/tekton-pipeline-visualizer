@@ -7,13 +7,11 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import net.joostvdg.tektonvisualizer.model.*;
 import net.joostvdg.tektonvisualizer.model.tables.records.PipelineStatusRecord;
 import net.joostvdg.tektonvisualizer.model.tables.records.PipelineTriggerRecord;
+import net.joostvdg.tektonvisualizer.sensemaker.db.InsertResult;
 import org.jooq.DSLContext;
 import org.jooq.Result;
 import org.slf4j.Logger;
@@ -34,7 +32,7 @@ public class PipelineStatusServiceImpl implements PipelineStatusService {
   }
 
   @Override
-  public Integer newPipelineStatus(PipelineStatus pipelineStatus) {
+  public InsertResult newPipelineStatus(PipelineStatus pipelineStatus) {
     logger.info("Received new PipelineStatus: {}", pipelineStatus);
     if (pipelineStatus == null) {
       throw new IllegalArgumentException("PipelineStatus cannot be null");
@@ -42,6 +40,18 @@ public class PipelineStatusServiceImpl implements PipelineStatusService {
     if (pipelineStatus.name() == null || pipelineStatus.name().isEmpty()) {
       throw new IllegalArgumentException("PipelineName cannot be null or empty");
     }
+    // first, query the db if we already have a pipeline status with the same name
+    PipelineStatusRecord existingPipelineStatusRecord =
+        create
+            .selectFrom(PIPELINE_STATUS)
+            .where(PIPELINE_STATUS.NAME.eq(pipelineStatus.name()))
+            .fetchOne();
+    if (existingPipelineStatusRecord != null) {
+      logger.info("PipelineStatus already exists: {}", existingPipelineStatusRecord);
+      return new InsertResult(
+          false, Optional.of(existingPipelineStatusRecord.get(PIPELINE_STATUS.ID)));
+    }
+
     PipelineStatusRecord pipelineStatusRecord =
         create
             .insertInto(PIPELINE_STATUS)
@@ -61,7 +71,7 @@ public class PipelineStatusServiceImpl implements PipelineStatusService {
 
     if (pipelineStatusRecord == null) {
       logger.error("Failed to insert PipelineStatus: {}", pipelineStatus);
-      return 0;
+      return new InsertResult(false, Optional.empty());
     }
 
     // create a new PipelineTrigger record
@@ -77,10 +87,10 @@ public class PipelineStatusServiceImpl implements PipelineStatusService {
             .fetchOne();
     if (pipelineTriggerRecord == null) {
       logger.error("Failed to insert PipelineTrigger: {}", pipelineStatus.trigger());
-      return 0;
+      return new InsertResult(false, Optional.empty());
     }
 
-    return pipelineStatusRecord.get(PIPELINE_STATUS.ID);
+    return new InsertResult(true, Optional.of(pipelineStatusRecord.get(PIPELINE_STATUS.ID)));
   }
 
   private Long convertToDuration(Instant start, Instant end) {

@@ -127,15 +127,15 @@ INSERT INTO supply_chain_code_source (
     supply_chain_id,
     code_source_id
 ) VALUES (
-    1,
-    1
+    (select id from supply_chain where name = 'Tekton Pipeline Visualizer'),
+    (select id from code_source where source_name = 'Tekton Pipeline Visualizer - Sensemaker')
 );
 INSERT INTO supply_chain_code_source (
     supply_chain_id,
     code_source_id
 ) VALUES (
-    1,
-    2
+    (select id from supply_chain where name = 'Tekton Pipeline Visualizer'),
+    (select id from code_source where source_name = 'Tekton Pipeline Visualizer - Harvester')
 );
 
 -- -- insert a pipeline status supply chain

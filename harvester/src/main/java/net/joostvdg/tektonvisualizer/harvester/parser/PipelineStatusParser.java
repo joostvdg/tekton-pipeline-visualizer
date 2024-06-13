@@ -62,26 +62,29 @@ public class PipelineStatusParser implements TektonResourceParser {
     // TODO: collect the TaskRun references from the PipelineRun's Status and store them in the
 
     List<PipelineStage> pipelineStages = new ArrayList<>();
-    var childReferences = statusData.getAsJsonObject().get("childReferences").getAsJsonArray();
-    if (childReferences == null || childReferences.isEmpty()) {
-      logger.warn(
-          "No child references found for PipelineRun: {} in namespace: {}", name, namespace);
-    } else {
-      int order = 0;
-      for (JsonElement childReference : childReferences) {
-        String taskRunId = childReference.getAsJsonObject().get("name").getAsString();
-        String taskName = childReference.getAsJsonObject().get("pipelineTaskName").getAsString();
-        var pipelineStage =
-            new PipelineStage(
-                taskRunId,
-                taskName,
-                new Status(true, "N/A", ExecutionStatus.SUCCEEDED),
-                Duration.ofSeconds(0),
-                order++,
-                List.of());
-        pipelineStages.add(pipelineStage);
+    if (statusData.getAsJsonObject() != null && statusData.getAsJsonObject().get("childReferences") != null) {
+      var childReferences = statusData.getAsJsonObject().get("childReferences").getAsJsonArray();
+      if (childReferences == null || childReferences.isEmpty()) {
+        logger.warn(
+                "No child references found for PipelineRun: {} in namespace: {}", name, namespace);
+      } else {
+        int order = 0;
+        for (JsonElement childReference : childReferences) {
+          String taskRunId = childReference.getAsJsonObject().get("name").getAsString();
+          String taskName = childReference.getAsJsonObject().get("pipelineTaskName").getAsString();
+          var pipelineStage =
+                  new PipelineStage(
+                          taskRunId,
+                          taskName,
+                          new Status(true, "N/A", ExecutionStatus.SUCCEEDED),
+                          Duration.ofSeconds(0),
+                          order++,
+                          List.of());
+          pipelineStages.add(pipelineStage);
+        }
       }
     }
+
 
     // TODO: parse result
     var results = parseResults(statusData.getAsJsonObject().get("results"));

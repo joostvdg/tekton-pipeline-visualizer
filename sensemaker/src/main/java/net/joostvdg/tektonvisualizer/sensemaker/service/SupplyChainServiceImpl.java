@@ -64,15 +64,10 @@ public class SupplyChainServiceImpl implements SupplyChainService {
   }
 
   @Override
-  public boolean attachPipelineStatusToSupplyChain(PipelineStatus pipelineStatus) {
+  public boolean attachPipelineStatusToSupplyChain(Integer pipelineStatusId, String sourceUrl) {
     // retrieve the pipeline results to find the source URL and subPath
-    if (pipelineStatus == null) {
-      throw new IllegalArgumentException("PipelineStatus cannot be null");
-    }
-
-    var sourceUrl = "";
-    if (pipelineStatus.results().containsKey(RESULT_FIELD_REPO_URL)) {
-      sourceUrl = pipelineStatus.results().get(RESULT_FIELD_REPO_URL);
+    if (pipelineStatusId == null) {
+      throw new IllegalArgumentException("pipelineStatusId cannot be null");
     }
 
     // retrieve the supply chain that has the source URL and subPath
@@ -87,26 +82,24 @@ public class SupplyChainServiceImpl implements SupplyChainService {
     List<SupplyChain> supplyChains = retrieveSupplyChainsForSources(sources);
 
     // attach the pipeline status to the supply chain
-    return attachSupplyChainToPipelineStatus(supplyChains, pipelineStatus);
+    return attachSupplyChainToPipelineStatus(supplyChains, pipelineStatusId);
   }
 
   private boolean attachSupplyChainToPipelineStatus(
-      List<SupplyChain> supplyChains, PipelineStatus pipelineStatus) {
+      List<SupplyChain> supplyChains, Integer pipelineStatusId) {
     if (supplyChains.isEmpty()) {
-      logger.warn("No supply chains found for pipeline status {}", pipelineStatus.name());
+      logger.warn("No supply chains found for pipeline status {}", pipelineStatusId);
       return false;
     }
 
     if (supplyChains.size() > 1) {
-      logger.warn("Multiple supply chains found for pipeline status {}", pipelineStatus.name());
+      logger.warn("Multiple supply chains found for pipeline status {}", pipelineStatusId);
     }
 
     // TODO: should we assume there's only one? or can we do more than one?
     create
         .insertInto(Tables.PIPELINE_STATUS_SUPPLY_CHAIN)
-        .set(
-            Tables.PIPELINE_STATUS_SUPPLY_CHAIN.PIPELINE_STATUS_ID,
-            Integer.valueOf(pipelineStatus.identifier()))
+        .set(Tables.PIPELINE_STATUS_SUPPLY_CHAIN.PIPELINE_STATUS_ID, pipelineStatusId)
         .set(
             Tables.PIPELINE_STATUS_SUPPLY_CHAIN.SUPPLY_CHAIN_ID,
             Integer.valueOf(supplyChains.getFirst().identifier()))

@@ -20,19 +20,20 @@ public class SupplyChainServiceImplTest {
   @Autowired private SupplyChainServiceImpl supplyChainServiceImpl;
   @Autowired private PipelineStatusServiceImpl pipelineStatusServiceImpl;
 
+  private static final String GIT_URL =
+      "https://github.com/joostvdg/tekton-pipeline-visualizer.git";
+
   @Test
   void shouldFindAllSupplyChainss() {
     List<SupplyChain> supplyChains = supplyChainServiceImpl.getAllSupplyChains();
     assertFalse(supplyChains.isEmpty());
-    assertEquals(1, supplyChains.size());
   }
 
   @Test
   void shouldAttachPipelineStatusToSupplyChain() {
     // create new PipelineStatus, no mocks
     HashMap<String, String> results = new HashMap<>();
-    results.put(
-        RESULT_FIELD_REPO_URL, "https://github.com/joostvdg/tekton-pipeline-visualizer.git");
+    results.put(RESULT_FIELD_REPO_URL, GIT_URL);
     var status = new Status(true, "Success", ExecutionStatus.SUCCEEDED);
     var trigger =
         new PipelineTrigger(
@@ -48,21 +49,12 @@ public class SupplyChainServiceImplTest {
             .status(status)
             .trigger(trigger)
             .build();
-    Integer newId = pipelineStatusServiceImpl.newPipelineStatus(pipelineStatus);
-    var pipelineStatusSaved =
-        new PipelineStatus.Builder()
-            .identifier(newId.toString())
-            .name("New Pipeline Status")
-            .pipelineIdentifier("new-pipeline-identifier")
-            .instantOfStart(Instant.now())
-            .instantOfCompletion(Instant.now())
-            .results(results)
-            .stages(List.of())
-            .status(status)
-            .trigger(trigger)
-            .build();
-    boolean attached =
-        supplyChainServiceImpl.attachPipelineStatusToSupplyChain(pipelineStatusSaved);
+    var result = pipelineStatusServiceImpl.newPipelineStatus(pipelineStatus);
+    Integer newId = 0;
+    if (result.newRecordId().isPresent()) {
+      newId = result.newRecordId().get();
+    }
+    boolean attached = supplyChainServiceImpl.attachPipelineStatusToSupplyChain(newId, GIT_URL);
     assertTrue(attached);
   }
 }

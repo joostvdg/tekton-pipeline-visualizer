@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.5</version>
+		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.joostvdg.tekton-visualizer</groupId>
@@ -35,6 +35,8 @@
 		<postgres.version>42.6.2</postgres.version>
 
 		<types.version>0.5.2</types.version>
+		<sonar.organization>joostvdg</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>

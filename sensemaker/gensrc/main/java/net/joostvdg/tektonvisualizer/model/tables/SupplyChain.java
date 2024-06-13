@@ -4,8 +4,11 @@
 package net.joostvdg.tektonvisualizer.model.tables;
 
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+import net.joostvdg.tektonvisualizer.model.Indexes;
 import net.joostvdg.tektonvisualizer.model.Keys;
 import net.joostvdg.tektonvisualizer.model.Public;
 import net.joostvdg.tektonvisualizer.model.tables.CodeSource.CodeSourcePath;
@@ -18,6 +21,7 @@ import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.InverseForeignKey;
 import org.jooq.Name;
 import org.jooq.Path;
@@ -133,6 +137,11 @@ public class SupplyChain extends TableImpl<SupplyChainRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.SUPPLY_CHAIN_NAME);
     }
 
     @Override

@@ -2,7 +2,6 @@
 package net.joostvdg.tektonvisualizer.sensemaker.service;
 
 import java.util.List;
-import net.joostvdg.tektonvisualizer.model.PipelineStatus;
 import net.joostvdg.tektonvisualizer.model.SupplyChain;
 
 public interface SupplyChainService {
@@ -16,5 +15,5 @@ public interface SupplyChainService {
 
   List<SupplyChain> getAllSupplyChains();
 
-  boolean attachPipelineStatusToSupplyChain(PipelineStatus pipelineStatus);
+  boolean attachPipelineStatusToSupplyChain(Integer pipelineStatusId, String sourceUrl);
 }

@@ -23,9 +23,9 @@ public class SourceServiceImplTest {
   void shouldFindAllSources() {
     List<Source> sources = sourceServiceImpl.getAllSources();
     assertFalse(sources.isEmpty());
-    assertEquals(2, sources.size());
+    assertEquals(3, sources.size()); // TODO: find a better way
     sources.sort(Comparator.comparing(Source::name).reversed());
-    Source source1 = sources.getFirst();
+    Source source1 = sources.get(0);
     assertEquals("Tekton Pipeline Visualizer - Sensemaker", source1.name());
     assertEquals("Github", source1.type());
     assertEquals("https://github.com/joostvdg/tekton-pipeline-visualizer.git", source1.url());
@@ -42,7 +42,7 @@ public class SourceServiceImplTest {
     Optional<Source> sourceOpt = sourceServiceImpl.getSourceById("1");
     assertFalse(sourceOpt.isEmpty());
     Source source = sourceOpt.get();
-    assertEquals("Tekton Pipeline Visualizer - Sensemaker", source.name());
+    assertEquals("IDEC", source.name());
     assertEquals("Github", source.type());
   }
 

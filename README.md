@@ -76,6 +76,7 @@ Support at least these messaging systems:
 * stream logs into something
  * ElasticSearch, or alternative?
  * Write access
+* https://www.baeldung.com/java-kubernetes-watch
 
 ## Backend 2 - Sensemaker
 
@@ -110,6 +111,39 @@ Support at least these messaging systems:
 * Vaadin
 * Retrieve data via GraphQL (from Backend 2 and 3)
 * Render data based on user account / role /org
+
+## Events
+
+* https://cloudevents.io/
+* https://cdevents.dev
+
+### TODO
+
+* create prototype of a chain of events
+    * e.g., Tekton Harvester watches PipelineRun events, captures the data, and sends it to Sensemaker via RabbitMQ
+    * Sensemaker processes the data, stores what is required for visualization, and sends a CloudEvent to Notifier
+    * Notifier processes the CloudEvent, which can also be a CDEvent, and sends notifications to the configured channels
+      * we can see two different kinds of channels, those aimed at humans, and those at machines
+      * the humans can be notified via Slack, Discord, Email, etc, and have a way of configuring this (team level, personal level)
+      * the machines can be notified via Kafka, or JSON over HTTP, etc
+* How do we chain the events?
+    * Tekton Harvester watches a PipelineRun, sends a message over RabbitMQ Queue
+    * Sensemaker listens to the RabbitMQ Queue, processes the message, and sends a something to Notifier via Kafka
+    * Notifier listens to the Kafka topic, processes the message, and then sends a message to a Tekton EventListener
+    * This kicks of the next pipeline
+* Recurring events?
+    * e.g., every day at 3 AM, we want to run a pipeline that checks the latest version of a dependency
+    * e.g., every time a new image is pushed to a registry, we want to run a pipeline that scans the image
+    * where do we configure this?
+    * how do we trigger this?
+* example: do we create a mapping for an application that is picked up by Notifier, so it can map an incoming event to an outgoing event?
+* Goals
+    * make the X Harvester a standard type of thing, so we can have a Tekton Harvester, ArgoCD Harvester, etc
+    * make the X Harvester a dumb thing, it can translate a specfic event to a generic event and send it to queue
+    * Sensemaker is the brains, a modern monolith (e.g., Spring Modulith), which is able to process the events, correlate them, and store them
+    * Notifier is the notification engine, which can be configured to send notifications to different channels
+      * so it needs a way of mapping incoming events to outgoing events
+      * it should have an easy way of configuring this, e.g., Kubernetes CR, so that you can manage it adjacent to the pipelines
 
 ## Links
 

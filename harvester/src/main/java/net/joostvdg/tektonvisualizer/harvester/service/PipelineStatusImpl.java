@@ -61,6 +61,8 @@ public class PipelineStatusImpl implements PipelineStatusService {
     return ResponseEntity.ok(results);
   }
 
+
+
   private void inspectCluster() {
     // TODO: optimize by retrieving a list of name and only retrieve the ones that are not yet known
     // TODO: store the ones that are known in a cache
@@ -81,37 +83,39 @@ public class PipelineStatusImpl implements PipelineStatusService {
     }
 
     for (var pipelineRun : pipelineRuns.getItems()) {
-      var runName = pipelineRun.getMetadata().getName();
-      if (knownPipelineStatuses.containsKey(runName)) {
-        logger.debug("PipelineRun: {} already known.", runName);
-        continue;
-      }
-      Optional<TektonResourceType> pipelineStatus = pipelineStatusParser.parse(pipelineRun);
-      if (pipelineStatus.isEmpty()) {
-        logger.warn("Could not parse PipelineRun: {}", runName);
-        continue;
-      }
-      var pipelineStatusObj = (PipelineStatus) pipelineStatus.get();
-      knownPipelineStatuses.put(runName, pipelineStatusObj);
-
-      // TODO: we can collect the order via the status.childReferences
-      List<PipelineStage> pipelineStages = new ArrayList<>();
-      var taskRuns = getTaskRunsForPipelineRun(runName);
-      for (var taskRun : taskRuns) {
-        var pipelineStage = taskRunParser.parse(taskRun);
-        if (pipelineStage.isEmpty()) {
-          logger.warn("Could not parse TaskRun: {}", taskRun.getMetadata().getName());
-          continue;
-        }
-        pipelineStages.add((PipelineStage) pipelineStage.get());
-      }
-      pipelineStatusObj.stages().addAll(pipelineStages);
+      processPipelineRun(pipelineRun);
     }
+  }
 
-    logger.info("Sending Pipeline Statuses to the queue.");
-    PipelineStatus pipelineStatusToSend =
-        knownPipelineStatuses.values().stream().findFirst().orElseThrow();
-    queueSender.sendPipelineStatus(pipelineStatusToSend);
+  @Override
+  public void processPipelineRun(DynamicKubernetesObject pipelineRun) {
+    var runName = pipelineRun.getMetadata().getName();
+    if (knownPipelineStatuses.containsKey(runName)) {
+      logger.debug("PipelineRun: {} already known.", runName);
+      return;
+    }
+    Optional<TektonResourceType> pipelineStatusCR = pipelineStatusParser.parse(pipelineRun);
+    if (pipelineStatusCR.isEmpty()) {
+      logger.warn("Could not parse PipelineRun: {}", runName);
+      return;
+    }
+    var pipelineStatus = (PipelineStatus) pipelineStatusCR.get();
+    knownPipelineStatuses.put(runName, pipelineStatus);
+
+    // TODO: we can collect the order via the status.childReferences
+    List<PipelineStage> pipelineStages = new ArrayList<>();
+    var taskRuns = getTaskRunsForPipelineRun(runName);
+    for (var taskRun : taskRuns) {
+      var pipelineStage = taskRunParser.parse(taskRun);
+      if (pipelineStage.isEmpty()) {
+        logger.warn("Could not parse TaskRun: {}", taskRun.getMetadata().getName());
+        continue;
+      }
+      pipelineStages.add((PipelineStage) pipelineStage.get());
+    }
+    pipelineStatus.stages().addAll(pipelineStages);
+    logger.info("Sending Pipeline Status to the queue.");
+    queueSender.sendPipelineStatus(pipelineStatus);
   }
 
   public List<DynamicKubernetesObject> getTaskRunsForPipelineRun(String pipelineRunName) {

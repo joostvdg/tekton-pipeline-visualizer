@@ -154,7 +154,7 @@ public class CodeSource extends TableImpl<CodeSourceRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.URL_SUBPATH_INDEX);
+        return Arrays.asList(Indexes.CODE_SOURCE_NAME, Indexes.URL_SUBPATH_INDEX);
     }
 
     @Override
