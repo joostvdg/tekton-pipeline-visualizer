@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>net.joostvdg.tekton-visualizer</groupId>
+		<artifactId>common</artifactId>
+		<version>0.1.4</version>
 	</parent>
-	<groupId>net.joostvdg.tekton-visualizer</groupId>
+
 	<artifactId>sensemaker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sensemaker</name>
+	<name>Supply Chain Visualizer :: Sensemaker</name>
 	<description>sensemaker</description>
 
 	<developers>
@@ -22,12 +22,6 @@
 	</developers>
 
 	<properties>
-		<java.version>21</java.version>
-		<spotless.version>2.43.0</spotless.version>
-		<error-prone.version>2.25.0</error-prone.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
 		<db.url>jdbc:postgresql://localhost:5432/tektonvisualizer</db.url>
 		<db.user>sensemaker</db.user>
 		<db.password>sensemaker</db.password>
@@ -84,6 +78,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-graphql</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -104,6 +102,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>kafka</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -256,111 +264,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<configLocation>google_checks.xml</configLocation>
-				</configuration>
-				<executions>
-					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>UTF-8</encoding>
-					<failOnError>true</failOnError>
-					<failOnWarning>true</failOnWarning>
-					<compilerArgs>
-						<arg>-XDcompilePolicy=simple</arg>
-						<arg>-Xplugin:ErrorProne</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-						<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-					</compilerArgs>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>com.google.errorprone</groupId>
-							<artifactId>error_prone_core</artifactId>
-							<version>${error-prone.version}</version>
-						</path>
-						<!-- Other annotation processors go here.
-
-                        If 'annotationProcessorPaths' is set, processors will no longer be
-                        discovered on the regular -classpath; see also 'Using Error Prone
-                        together with other annotation processors' below. -->
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.diffplug.spotless</groupId>
-				<artifactId>spotless-maven-plugin</artifactId>
-				<version>${spotless.version}</version>
-				<configuration>
-					<!-- optional: limit format enforcement to just the files changed by this feature branch -->
-					<formats>
-						<!-- you can define as many formats as you want, each is independent -->
-						<format>
-							<!-- define the files to apply to -->
-							<includes>
-								<include>.gitattributes</include>
-								<include>.gitignore</include>
-							</includes>
-							<!-- define the steps to apply to those files -->
-							<trimTrailingWhitespace/>
-							<endWithNewline/>
-						</format>
-					</formats>
-					<!-- define a language-specific format -->
-					<java>
-						<!-- no need to specify files, inferred automatically, but you can if you want -->
-
-						<!-- apply a specific flavor of google-java-format and reflow long strings -->
-						<googleJavaFormat>
-							<version>1.20.0</version>
-							<style>GOOGLE</style>
-							<reflowLongStrings>true</reflowLongStrings>
-							<formatJavadoc>true</formatJavadoc>
-						</googleJavaFormat>
-
-						<removeUnusedImports /> <!-- self-explanatory -->
-						<importOrder /> <!-- standard import order -->
-						<formatAnnotations />  <!-- fixes formatting of type annotations, see below -->
-						<!-- make sure every file has the following copyright header.
-                          optionally, Spotless can set copyright years by digging
-                          through git history (see "license" section below) -->
-						<licenseHeader>
-							<content>/* (C)2024 */</content>  <!-- or <file>${project.basedir}/license-header</file> -->
-						</licenseHeader>
-					</java>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

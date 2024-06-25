@@ -3,16 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>net.joostvdg.tekton-visualizer</groupId>
+		<artifactId>common</artifactId>
+		<version>0.1.4</version>
 	</parent>
 
-	<groupId>net.joostvdg.tekton-visualizer</groupId>
 	<artifactId>tekton-harvester</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Harvester</name>
+	<name>Supply Chain Visualizer :: Tekton-Harvester</name>
 	<description>Kubernetes client for retrieving Tekton related data, process it, and push it to the next component</description>
 
 	<developers>
@@ -23,13 +21,7 @@
 	</developers>
 
 	<properties>
-		<java.version>21</java.version>
-		<spotless.version>2.43.0</spotless.version>
-		<error-prone.version>2.25.0</error-prone.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
-		<types.version>0.5.1</types.version>
+		<types.version>0.5.2</types.version>
 	</properties>
 
 	<repositories>
@@ -67,12 +59,6 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-docker-compose</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>io.kubernetes</groupId>
@@ -204,7 +190,7 @@
 
 						<removeUnusedImports /> <!-- self-explanatory -->
 						<importOrder /> <!-- standard import order -->
-						<formatAnnotations />  <!-- fixes formatting of type annotations, see below -->
+						<formatAnnotations />  <!-- fixes formatting of routingType annotations, see below -->
 						<!-- make sure every file has the following copyright header.
                           optionally, Spotless can set copyright years by digging
                           through git history (see "license" section below) -->

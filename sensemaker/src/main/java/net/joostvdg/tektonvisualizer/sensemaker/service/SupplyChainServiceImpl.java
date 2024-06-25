@@ -7,6 +7,7 @@ import net.joostvdg.tektonvisualizer.model.PipelineStatus;
 import net.joostvdg.tektonvisualizer.model.Source;
 import net.joostvdg.tektonvisualizer.model.SupplyChain;
 import net.joostvdg.tektonvisualizer.model.Tables;
+import net.joostvdg.tektonvisualizer.model.tables.records.PipelineStatusSupplyChainRecord;
 import net.joostvdg.tektonvisualizer.model.tables.records.SupplyChainRecord;
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -15,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static net.joostvdg.tektonvisualizer.model.Tables.PIPELINE_STATUS;
 
 @Service
 @Transactional
@@ -94,6 +97,17 @@ public class SupplyChainServiceImpl implements SupplyChainService {
 
     if (supplyChains.size() > 1) {
       logger.warn("Multiple supply chains found for pipeline status {}", pipelineStatusId);
+    }
+
+    // Verify these two aren't matched already
+    PipelineStatusSupplyChainRecord pipelineStatusSupplyChainRecord = create
+        .selectFrom(Tables.PIPELINE_STATUS_SUPPLY_CHAIN)
+        .where(Tables.PIPELINE_STATUS_SUPPLY_CHAIN.PIPELINE_STATUS_ID.eq(pipelineStatusId))
+        .and(Tables.PIPELINE_STATUS_SUPPLY_CHAIN.SUPPLY_CHAIN_ID.eq(Integer.valueOf(supplyChains.getFirst().identifier())))
+        .fetchOne();
+    if (pipelineStatusSupplyChainRecord != null) {
+        logger.warn("PipelineStatus {} is already attached to SupplyChain {}", pipelineStatusId, supplyChains.getFirst().identifier());
+        return false;
     }
 
     // TODO: should we assume there's only one? or can we do more than one?

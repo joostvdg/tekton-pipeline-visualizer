@@ -47,7 +47,7 @@ public class PipelineStatusServiceImpl implements PipelineStatusService {
             .where(PIPELINE_STATUS.NAME.eq(pipelineStatus.name()))
             .fetchOne();
     if (existingPipelineStatusRecord != null) {
-      logger.info("PipelineStatus already exists: {}", existingPipelineStatusRecord);
+      logger.info("PipelineStatus {} already exists: {}", pipelineStatus.name(), existingPipelineStatusRecord);
       return new InsertResult(
           false, Optional.of(existingPipelineStatusRecord.get(PIPELINE_STATUS.ID)));
     }

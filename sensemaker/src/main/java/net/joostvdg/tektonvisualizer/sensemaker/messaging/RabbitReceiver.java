@@ -5,6 +5,7 @@ import static net.joostvdg.tektonvisualizer.sensemaker.service.SupplyChainServic
 
 import java.util.concurrent.CountDownLatch;
 import net.joostvdg.tektonvisualizer.model.PipelineStatus;
+import net.joostvdg.tektonvisualizer.sensemaker.service.NotificationService;
 import net.joostvdg.tektonvisualizer.sensemaker.service.PipelineStatusService;
 import net.joostvdg.tektonvisualizer.sensemaker.service.SupplyChainService;
 import net.joostvdg.tektonvisualizer.serialize.JsonSerializer;
@@ -23,10 +24,13 @@ public class RabbitReceiver {
 
   private final SupplyChainService supplyChainService;
 
+  private final NotificationService notificationService;
+
   public RabbitReceiver(
-      PipelineStatusService pipelineStatusService, SupplyChainService supplyChainService) {
+          PipelineStatusService pipelineStatusService, SupplyChainService supplyChainService, NotificationService notificationService) {
     this.pipelineStatusService = pipelineStatusService;
     this.supplyChainService = supplyChainService;
+      this.notificationService = notificationService;
   }
 
   public void receiveMessage(String pipelineStatusJson) {
@@ -38,20 +42,12 @@ public class RabbitReceiver {
     }
     var result = pipelineStatusService.newPipelineStatus(pipelineStatus);
 
-    logger.info("PipelineStatus inserted: {}", result.success());
-
     if (result.success() || result.newRecordId().isPresent()) {
       var newRecordId = result.newRecordId().get();
       logger.info("PipelineStatus inserted with id: {}", newRecordId);
-
-      var sourceUrl = "";
-      // TODO: move this to PipelineStatusService
-      if (pipelineStatus.results().containsKey(RESULT_FIELD_REPO_URL)) {
-        sourceUrl = pipelineStatus.results().get(RESULT_FIELD_REPO_URL);
-      }
-
-      var isAttached = supplyChainService.attachPipelineStatusToSupplyChain(newRecordId, sourceUrl);
-      logger.info("PipelineStatus attached to SupplyChain: {}", isAttached);
+      handleNewPipelineStatus(pipelineStatus, newRecordId);
+    } else {
+      logger.error("PipelineStatus could not be inserted");
     }
 
     latch.countDown();
@@ -60,4 +56,19 @@ public class RabbitReceiver {
   public CountDownLatch getLatch() {
     return latch;
   }
+
+  private void handleNewPipelineStatus(PipelineStatus pipelineStatus, Integer newRecordId) {
+    var sourceUrl = "";
+    // TODO: move this to PipelineStatusService
+    if (pipelineStatus.results().containsKey(RESULT_FIELD_REPO_URL)) {
+      sourceUrl = pipelineStatus.results().get(RESULT_FIELD_REPO_URL);
+    }
+
+    var isAttached = supplyChainService.attachPipelineStatusToSupplyChain(newRecordId, sourceUrl);
+    logger.info("PipelineStatus attached to SupplyChain: {}", isAttached);
+    if (isAttached) {
+      notificationService.notifyOnWatchedPipelineStatusReceived(pipelineStatus);
+    }
+  }
+
 }

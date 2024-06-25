@@ -138,7 +138,7 @@ Support at least these messaging systems:
     * how do we trigger this?
 * example: do we create a mapping for an application that is picked up by Notifier, so it can map an incoming event to an outgoing event?
 * Goals
-    * make the X Harvester a standard type of thing, so we can have a Tekton Harvester, ArgoCD Harvester, etc
+    * make the X Harvester a standard routingType of thing, so we can have a Tekton Harvester, ArgoCD Harvester, etc
     * make the X Harvester a dumb thing, it can translate a specfic event to a generic event and send it to queue
     * Sensemaker is the brains, a modern monolith (e.g., Spring Modulith), which is able to process the events, correlate them, and store them
     * Notifier is the notification engine, which can be configured to send notifications to different channels

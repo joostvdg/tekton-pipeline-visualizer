@@ -2,6 +2,7 @@
 package net.joostvdg.tektonvisualizer.sensemaker;
 
 import net.joostvdg.tektonvisualizer.sensemaker.messaging.RabbitReceiver;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -12,6 +13,7 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.config.TopicBuilder;
 
 @SpringBootApplication
 public class SensemakerApplication {
@@ -19,6 +21,7 @@ public class SensemakerApplication {
   private static final String QUEUE_NAME = "tekton";
   private static final String TOPIC_EXCHANGE_NAME = "tekton-exchange";
   private static final String ROUTING_KEY = "tekton.#";
+  public static final String PIPELINE_STATUS_TOPIC = "pipeline-status";
 
   public static void main(String[] args) {
     SpringApplication.run(SensemakerApplication.class, args);
@@ -52,5 +55,13 @@ public class SensemakerApplication {
     container.setQueueNames(QUEUE_NAME);
     container.setMessageListener(listenerAdapter);
     return container;
+  }
+
+  @Bean
+  public NewTopic topic() {
+    return TopicBuilder.name(PIPELINE_STATUS_TOPIC)
+            .partitions(10)
+            .replicas(1)
+            .build();
   }
 }

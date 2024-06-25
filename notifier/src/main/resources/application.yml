@@ -1,0 +1,83 @@
+spring:
+    application:
+      name: notifier
+    threads:
+      virtual:
+        enabled: true
+    kafka:
+      consumer:
+        group-id: notifier
+        auto-offset-reset: earliest
+      bootstrap-servers: localhost:9094
+
+notifications:
+  mappings:
+    - name: her-test-02
+      enabled: true
+      source:
+        type: SOURCE_BUILD
+        gitUrl: https://github.com/joostvdg/gitstafette
+        subPath: .
+      target:
+        routingType: GENERIC_WEBHOOK
+        url: "https://stitches02.home.lab" #"http://el-stitches02.her-test.svc.cluster.local:8080"
+        when:
+          current: SUCCESS
+          previous: ANY
+    - name: her-test-03
+      enabled: true
+      source:
+        type: IMAGE_BUILD
+        gitUrl: https://github.com/joostvdg/gitstafette
+        subPath: .
+      target:
+        routingType: GENERIC_WEBHOOK
+        url: "https://el-stitches03..home.lab"
+        when:
+          current: SUCCESS
+          previous: ANY
+    - name: her-test-04
+      enabled: true
+      source:
+        type: IMAGE_SCAN
+        gitUrl: https://github.com/joostvdg/gitstafette
+        subPath: .
+      target:
+        routingType: GENERIC_WEBHOOK
+        url: "https://el-stitches04.home.lab"
+        when:
+          current: SUCCESS
+          previous: ANY
+    - name: Mapping1
+      enabled: false
+      source:
+        gitUrl: https://github.com/example/repo
+        subPath: /path/to/relevant/code
+      target:
+        routingType: GENERIC_WEBHOOK
+        url: http://example.com/webhook
+        when:
+          current: SUCCESS
+          previous: FAILURE
+    - name: Mapping2
+      enabled: false
+      source:
+        gitUrl: https://github.com/example/repo2
+        subPath: /path/to/another/code
+      target:
+        routingType: SLACK
+        url: https://hooks.slack.com/services/ABC/DEF/GHI
+        when:
+          current: FAILURE
+          previous: SUCCESS
+    - name: Mapping3
+      enabled: false
+      source:
+        gitUrl: https://github.com/example/repo3
+        subPath: /path/to/different/code
+      target:
+        routingType: KAFKA
+        url: kafka://localhost:9092/topic
+        when:
+          current: SUCCESS
+          previous: OTHER

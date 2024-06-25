@@ -1,0 +1,15 @@
+{
+  "specversion": "1.0",
+  "type": "dev.cdeventsx.joostvdg-imagebuild.finished.0.1.0",
+  "source": "/tekton/harbor-events-relay-source-build",
+  "id": "f8aa59e5f027607f734b34bc9ce5f13938368f74",
+  "time": "2024-06-03T22:03:20Z",
+  "datacontenttype": "application/json",
+  "data": {
+    "image-url": "harbor.joostvdg.io/joostvdg/harbor-events-relay:0.1.0",
+    "image-digest": "sha256:367f6950a7583ecbf347f419225df2ed64ec50221d127ac9e92d61d77055d2a9",
+    "git-repo": "github.com/joostvdg/harbor-events-relay",
+    "git-repo-path": "cmd/harbor-events-relay",
+    "git-commit": "f8aa59e5f027607f734b34bc9ce5f13938368f74"
+  }
+}
