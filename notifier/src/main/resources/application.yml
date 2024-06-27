@@ -32,7 +32,7 @@ notifications:
         subPath: .
       target:
         routingType: GENERIC_WEBHOOK
-        url: "https://el-stitches03..home.lab"
+        url: "https://stitches03.home.lab"
         when:
           current: SUCCESS
           previous: ANY
@@ -44,7 +44,7 @@ notifications:
         subPath: .
       target:
         routingType: GENERIC_WEBHOOK
-        url: "https://el-stitches04.home.lab"
+        url: "https://stitches04.home.lab"
         when:
           current: SUCCESS
           previous: ANY

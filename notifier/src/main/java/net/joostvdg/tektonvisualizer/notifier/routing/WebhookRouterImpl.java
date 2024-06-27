@@ -5,16 +5,20 @@ import com.alibaba.fastjson2.JSON;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import jakarta.annotation.PostConstruct;
 import net.joostvdg.tektonvisualizer.model.PipelineStatus;
 import net.joostvdg.tektonvisualizer.notifier.cloudevents.CloudEventBase;
 import net.joostvdg.tektonvisualizer.notifier.cloudevents.EventData;
 import net.joostvdg.tektonvisualizer.notifier.mapping.NotificationMapping;
+import net.joostvdg.tektonvisualizer.notifier.mapping.SourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatusCode;
@@ -49,8 +53,18 @@ public class WebhookRouterImpl implements WebhookRouter {
 
   private final AtomicInteger pendingResponsesCtr = new AtomicInteger();
   private static final int MAX_RETRIES = 3;
+  private final Map<SourceType, String> cloudEventTypes;
 
-  @Override
+    public WebhookRouterImpl() {
+        cloudEventTypes = new HashMap<>();
+        cloudEventTypes.put(SourceType.SOURCE_BUILD, "dev.cdeventsx.joostvdg-sourcebuild.finished.0.1.0");
+      cloudEventTypes.put(SourceType.IMAGE_BUILD, "dev.cdeventsx.joostvdg-imagebuild.finished.0.1.0");
+      cloudEventTypes.put(SourceType.IMAGE_SCAN, "dev.cdeventsx.joostvdg-imagescan.finished.0.1.0");
+
+    }
+
+
+    @Override
   public boolean route(NotificationMapping notificationMapping, PipelineStatus pipelineStatus) {
 
     String gitCommit = pipelineStatus.results().get("REPO_COMMIT");
@@ -70,8 +84,8 @@ public class WebhookRouterImpl implements WebhookRouter {
     var cloudEvent =
         new CloudEventBase(
             "1.0",
-            "dev.cdeventsx.joostvdg-sourcebuild.finished.0.1.0",
-            "/tekton/harbor-events-relay-source-build",
+            cloudEventTypes.get(notificationMapping.source().type()),
+            "/tekton-vizualizer/notifier",
             eventId,
             "2024-06-03T22:03:20Z",
             "application/json",
@@ -83,7 +97,7 @@ public class WebhookRouterImpl implements WebhookRouter {
         "Sending webhook to: {}, for notifying on pipelineStatus: {}",
         notificationMapping.target().url(),
         pipelineStatus.name());
-    logger.info("Payload: {}", new String(jsonPayload, StandardCharsets.UTF_8));
+    logger.info("Target: {}, Payload: {}",notificationMapping.target().url() ,new String(jsonPayload, StandardCharsets.UTF_8));
 
     // TODO: properly handle SSL certs
       SslContext sslContext = null;
